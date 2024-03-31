@@ -34,27 +34,6 @@
 			remoteGlobalIDString = 1C05388F2B8AB7B1008B37ED;
 			remoteInfo = "BenBio Watch App";
 		};
-		B5BE09BB2BBA01DC003B9801 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = B5BE09B52BBA01DB003B9801 /* BenBio.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = B5BE09872BBA01DA003B9801;
-			remoteInfo = BenBio;
-		};
-		B5BE09BD2BBA01DC003B9801 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = B5BE09B52BBA01DB003B9801 /* BenBio.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = B5BE09982BBA01DB003B9801;
-			remoteInfo = BenBioTests;
-		};
-		B5BE09BF2BBA01DC003B9801 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = B5BE09B52BBA01DB003B9801 /* BenBio.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = B5BE09A22BBA01DB003B9801;
-			remoteInfo = BenBioUITests;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -91,7 +70,6 @@
 		1CAB91AB2B8B24CD00010986 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1CAB91AE2B8B24CD00010986 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		1CAB91B02B8B24CD00010986 /* BenBio_Mac_App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BenBio_Mac_App.entitlements; sourceTree = "<group>"; };
-		B5BE09B52BBA01DB003B9801 /* BenBio.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BenBio.xcodeproj; path = ../BenBio/BenBio.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,7 +100,6 @@
 		1C0538832B8AB7B0008B37ED = {
 			isa = PBXGroup;
 			children = (
-				B5BE09B52BBA01DB003B9801 /* BenBio.xcodeproj */,
 				1C69A1242B8B9E8D009395BD /* Functions.swift */,
 				1C0538942B8AB7B1008B37ED /* BenBio Watch App */,
 				1C0538AC2B8ABBCA008B37ED /* BenBio iOS App */,
@@ -199,16 +176,6 @@
 				1CAB91AE2B8B24CD00010986 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		B5BE09B62BBA01DB003B9801 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				B5BE09BC2BBA01DC003B9801 /* BenBio.app */,
-				B5BE09BE2BBA01DC003B9801 /* BenBioTests.xctest */,
-				B5BE09C02BBA01DC003B9801 /* BenBioUITests.xctest */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -290,7 +257,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1520;
-				LastUpgradeCheck = 1520;
+				LastUpgradeCheck = 1530;
 				TargetAttributes = {
 					1C0538892B8AB7B1008B37ED = {
 						CreatedOnToolsVersion = 15.2;
@@ -318,12 +285,6 @@
 			mainGroup = 1C0538832B8AB7B0008B37ED;
 			productRefGroup = 1C05388B2B8AB7B1008B37ED /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = B5BE09B62BBA01DB003B9801 /* Products */;
-					ProjectRef = B5BE09B52BBA01DB003B9801 /* BenBio.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				1C0538892B8AB7B1008B37ED /* BenBio */,
@@ -333,30 +294,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		B5BE09BC2BBA01DC003B9801 /* BenBio.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = BenBio.app;
-			remoteRef = B5BE09BB2BBA01DC003B9801 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		B5BE09BE2BBA01DC003B9801 /* BenBioTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = BenBioTests.xctest;
-			remoteRef = B5BE09BD2BBA01DC003B9801 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		B5BE09C02BBA01DC003B9801 /* BenBioUITests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = BenBioUITests.xctest;
-			remoteRef = B5BE09BF2BBA01DC003B9801 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		1C0538882B8AB7B1008B37ED /* Resources */ = {
@@ -472,6 +409,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -535,6 +473,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -739,6 +678,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 7;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"BenBio Mac App/Preview Content\"";
 				DEVELOPMENT_TEAM = 728QJVXW3S;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -770,6 +710,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 7;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"BenBio Mac App/Preview Content\"";
 				DEVELOPMENT_TEAM = 728QJVXW3S;
 				ENABLE_HARDENED_RUNTIME = YES;
