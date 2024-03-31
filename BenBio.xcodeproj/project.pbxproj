@@ -1,0 +1,846 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1C0538912B8AB7B1008B37ED /* BenBio Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 1C0538902B8AB7B1008B37ED /* BenBio Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		1C0538962B8AB7B1008B37ED /* BenBio Watch App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C0538952B8AB7B1008B37ED /* BenBio Watch App.swift */; };
+		1C0538982B8AB7B1008B37ED /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C0538972B8AB7B1008B37ED /* ContentView.swift */; };
+		1C05389A2B8AB7B2008B37ED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1C0538992B8AB7B2008B37ED /* Assets.xcassets */; };
+		1C05389D2B8AB7B2008B37ED /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1C05389C2B8AB7B2008B37ED /* Preview Assets.xcassets */; };
+		1C0538AE2B8ABBCA008B37ED /* BenBio iOS App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C0538AD2B8ABBCA008B37ED /* BenBio iOS App.swift */; };
+		1C0538B02B8ABBCA008B37ED /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C0538AF2B8ABBCA008B37ED /* ContentView.swift */; };
+		1C0538B22B8ABBCB008B37ED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1C0538B12B8ABBCB008B37ED /* Assets.xcassets */; };
+		1C0538B52B8ABBCB008B37ED /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1C0538B42B8ABBCB008B37ED /* Preview Assets.xcassets */; };
+		1C69A1252B8B9FC6009395BD /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C69A1242B8B9E8D009395BD /* Functions.swift */; };
+		1C69A1262B8BA0CA009395BD /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C69A1242B8B9E8D009395BD /* Functions.swift */; };
+		1C69A1272B8BA0CB009395BD /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C69A1242B8B9E8D009395BD /* Functions.swift */; };
+		1C69A1292B8BA768009395BD /* DatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C69A1282B8BA768009395BD /* DatePickerView.swift */; };
+		1CAB91A82B8B24CB00010986 /* BenBio Mac App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CAB91A72B8B24CB00010986 /* BenBio Mac App.swift */; };
+		1CAB91AA2B8B24CB00010986 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CAB91A92B8B24CB00010986 /* ContentView.swift */; };
+		1CAB91AC2B8B24CD00010986 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1CAB91AB2B8B24CD00010986 /* Assets.xcassets */; };
+		1CAB91AF2B8B24CD00010986 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1CAB91AE2B8B24CD00010986 /* Preview Assets.xcassets */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		1C0538922B8AB7B1008B37ED /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1C0538842B8AB7B0008B37ED /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1C05388F2B8AB7B1008B37ED;
+			remoteInfo = "BenBio Watch App";
+		};
+		B5BE09BB2BBA01DC003B9801 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B5BE09B52BBA01DB003B9801 /* BenBio.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = B5BE09872BBA01DA003B9801;
+			remoteInfo = BenBio;
+		};
+		B5BE09BD2BBA01DC003B9801 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B5BE09B52BBA01DB003B9801 /* BenBio.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = B5BE09982BBA01DB003B9801;
+			remoteInfo = BenBioTests;
+		};
+		B5BE09BF2BBA01DC003B9801 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B5BE09B52BBA01DB003B9801 /* BenBio.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = B5BE09A22BBA01DB003B9801;
+			remoteInfo = BenBioUITests;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		1C0538A32B8AB7B2008B37ED /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				1C0538912B8AB7B1008B37ED /* BenBio Watch App.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		1C05388A2B8AB7B1008B37ED /* BenBio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BenBio.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1C0538902B8AB7B1008B37ED /* BenBio Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "BenBio Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1C0538952B8AB7B1008B37ED /* BenBio Watch App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BenBio Watch App.swift"; sourceTree = "<group>"; };
+		1C0538972B8AB7B1008B37ED /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		1C0538992B8AB7B2008B37ED /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		1C05389C2B8AB7B2008B37ED /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		1C0538AB2B8ABBCA008B37ED /* BenBio iOS App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "BenBio iOS App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1C0538AD2B8ABBCA008B37ED /* BenBio iOS App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BenBio iOS App.swift"; sourceTree = "<group>"; };
+		1C0538AF2B8ABBCA008B37ED /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		1C0538B12B8ABBCB008B37ED /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		1C0538B42B8ABBCB008B37ED /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		1C69A1242B8B9E8D009395BD /* Functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Functions.swift; sourceTree = "<group>"; };
+		1C69A1282B8BA768009395BD /* DatePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerView.swift; sourceTree = "<group>"; };
+		1CAB91A52B8B24CB00010986 /* BenBio Mac App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "BenBio Mac App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1CAB91A72B8B24CB00010986 /* BenBio Mac App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BenBio Mac App.swift"; sourceTree = "<group>"; };
+		1CAB91A92B8B24CB00010986 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		1CAB91AB2B8B24CD00010986 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		1CAB91AE2B8B24CD00010986 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		1CAB91B02B8B24CD00010986 /* BenBio_Mac_App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BenBio_Mac_App.entitlements; sourceTree = "<group>"; };
+		B5BE09B52BBA01DB003B9801 /* BenBio.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BenBio.xcodeproj; path = ../BenBio/BenBio.xcodeproj; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1C05388D2B8AB7B1008B37ED /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1C0538A82B8ABBCA008B37ED /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1CAB91A22B8B24CB00010986 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1C0538832B8AB7B0008B37ED = {
+			isa = PBXGroup;
+			children = (
+				B5BE09B52BBA01DB003B9801 /* BenBio.xcodeproj */,
+				1C69A1242B8B9E8D009395BD /* Functions.swift */,
+				1C0538942B8AB7B1008B37ED /* BenBio Watch App */,
+				1C0538AC2B8ABBCA008B37ED /* BenBio iOS App */,
+				1CAB91A62B8B24CB00010986 /* BenBio Mac App */,
+				1C05388B2B8AB7B1008B37ED /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		1C05388B2B8AB7B1008B37ED /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1C05388A2B8AB7B1008B37ED /* BenBio.app */,
+				1C0538902B8AB7B1008B37ED /* BenBio Watch App.app */,
+				1C0538AB2B8ABBCA008B37ED /* BenBio iOS App.app */,
+				1CAB91A52B8B24CB00010986 /* BenBio Mac App.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		1C0538942B8AB7B1008B37ED /* BenBio Watch App */ = {
+			isa = PBXGroup;
+			children = (
+				1C0538992B8AB7B2008B37ED /* Assets.xcassets */,
+				1C0538952B8AB7B1008B37ED /* BenBio Watch App.swift */,
+				1C0538972B8AB7B1008B37ED /* ContentView.swift */,
+				1C69A1282B8BA768009395BD /* DatePickerView.swift */,
+				1C05389B2B8AB7B2008B37ED /* Preview Content */,
+			);
+			path = "BenBio Watch App";
+			sourceTree = "<group>";
+		};
+		1C05389B2B8AB7B2008B37ED /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				1C05389C2B8AB7B2008B37ED /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		1C0538AC2B8ABBCA008B37ED /* BenBio iOS App */ = {
+			isa = PBXGroup;
+			children = (
+				1C0538B12B8ABBCB008B37ED /* Assets.xcassets */,
+				1C0538AD2B8ABBCA008B37ED /* BenBio iOS App.swift */,
+				1C0538AF2B8ABBCA008B37ED /* ContentView.swift */,
+				1C0538B32B8ABBCB008B37ED /* Preview Content */,
+			);
+			path = "BenBio iOS App";
+			sourceTree = "<group>";
+		};
+		1C0538B32B8ABBCB008B37ED /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				1C0538B42B8ABBCB008B37ED /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		1CAB91A62B8B24CB00010986 /* BenBio Mac App */ = {
+			isa = PBXGroup;
+			children = (
+				1CAB91AB2B8B24CD00010986 /* Assets.xcassets */,
+				1CAB91A72B8B24CB00010986 /* BenBio Mac App.swift */,
+				1CAB91A92B8B24CB00010986 /* ContentView.swift */,
+				1CAB91B02B8B24CD00010986 /* BenBio_Mac_App.entitlements */,
+				1CAB91AD2B8B24CD00010986 /* Preview Content */,
+			);
+			path = "BenBio Mac App";
+			sourceTree = "<group>";
+		};
+		1CAB91AD2B8B24CD00010986 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				1CAB91AE2B8B24CD00010986 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		B5BE09B62BBA01DB003B9801 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B5BE09BC2BBA01DC003B9801 /* BenBio.app */,
+				B5BE09BE2BBA01DC003B9801 /* BenBioTests.xctest */,
+				B5BE09C02BBA01DC003B9801 /* BenBioUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1C0538892B8AB7B1008B37ED /* BenBio */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1C0538A42B8AB7B2008B37ED /* Build configuration list for PBXNativeTarget "BenBio" */;
+			buildPhases = (
+				1C0538882B8AB7B1008B37ED /* Resources */,
+				1C0538A32B8AB7B2008B37ED /* Embed Watch Content */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1C0538932B8AB7B1008B37ED /* PBXTargetDependency */,
+			);
+			name = BenBio;
+			productName = BenBioWatch;
+			productReference = 1C05388A2B8AB7B1008B37ED /* BenBio.app */;
+			productType = "com.apple.product-type.application.watchapp2-container";
+		};
+		1C05388F2B8AB7B1008B37ED /* BenBio Watch App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1C0538A02B8AB7B2008B37ED /* Build configuration list for PBXNativeTarget "BenBio Watch App" */;
+			buildPhases = (
+				1C05388C2B8AB7B1008B37ED /* Sources */,
+				1C05388D2B8AB7B1008B37ED /* Frameworks */,
+				1C05388E2B8AB7B1008B37ED /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "BenBio Watch App";
+			productName = "BenBio Watch App";
+			productReference = 1C0538902B8AB7B1008B37ED /* BenBio Watch App.app */;
+			productType = "com.apple.product-type.application";
+		};
+		1C0538AA2B8ABBCA008B37ED /* BenBio iOS App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1C0538B62B8ABBCB008B37ED /* Build configuration list for PBXNativeTarget "BenBio iOS App" */;
+			buildPhases = (
+				1C0538A72B8ABBCA008B37ED /* Sources */,
+				1C0538A82B8ABBCA008B37ED /* Frameworks */,
+				1C0538A92B8ABBCA008B37ED /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "BenBio iOS App";
+			productName = "BenBio iOS App";
+			productReference = 1C0538AB2B8ABBCA008B37ED /* BenBio iOS App.app */;
+			productType = "com.apple.product-type.application";
+		};
+		1CAB91A42B8B24CB00010986 /* BenBio Mac App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1CAB91B32B8B24CD00010986 /* Build configuration list for PBXNativeTarget "BenBio Mac App" */;
+			buildPhases = (
+				1CAB91A12B8B24CB00010986 /* Sources */,
+				1CAB91A22B8B24CB00010986 /* Frameworks */,
+				1CAB91A32B8B24CB00010986 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "BenBio Mac App";
+			productName = "BenBio Mac App";
+			productReference = 1CAB91A52B8B24CB00010986 /* BenBio Mac App.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		1C0538842B8AB7B0008B37ED /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1520;
+				LastUpgradeCheck = 1520;
+				TargetAttributes = {
+					1C0538892B8AB7B1008B37ED = {
+						CreatedOnToolsVersion = 15.2;
+						LastSwiftMigration = 1520;
+					};
+					1C05388F2B8AB7B1008B37ED = {
+						CreatedOnToolsVersion = 15.2;
+					};
+					1C0538AA2B8ABBCA008B37ED = {
+						CreatedOnToolsVersion = 15.2;
+					};
+					1CAB91A42B8B24CB00010986 = {
+						CreatedOnToolsVersion = 15.2;
+					};
+				};
+			};
+			buildConfigurationList = 1C0538872B8AB7B0008B37ED /* Build configuration list for PBXProject "BenBio" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 1C0538832B8AB7B0008B37ED;
+			productRefGroup = 1C05388B2B8AB7B1008B37ED /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = B5BE09B62BBA01DB003B9801 /* Products */;
+					ProjectRef = B5BE09B52BBA01DB003B9801 /* BenBio.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				1C0538892B8AB7B1008B37ED /* BenBio */,
+				1C05388F2B8AB7B1008B37ED /* BenBio Watch App */,
+				1C0538AA2B8ABBCA008B37ED /* BenBio iOS App */,
+				1CAB91A42B8B24CB00010986 /* BenBio Mac App */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		B5BE09BC2BBA01DC003B9801 /* BenBio.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = BenBio.app;
+			remoteRef = B5BE09BB2BBA01DC003B9801 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B5BE09BE2BBA01DC003B9801 /* BenBioTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = BenBioTests.xctest;
+			remoteRef = B5BE09BD2BBA01DC003B9801 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B5BE09C02BBA01DC003B9801 /* BenBioUITests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = BenBioUITests.xctest;
+			remoteRef = B5BE09BF2BBA01DC003B9801 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1C0538882B8AB7B1008B37ED /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1C05388E2B8AB7B1008B37ED /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1C05389D2B8AB7B2008B37ED /* Preview Assets.xcassets in Resources */,
+				1C05389A2B8AB7B2008B37ED /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1C0538A92B8ABBCA008B37ED /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1C0538B52B8ABBCB008B37ED /* Preview Assets.xcassets in Resources */,
+				1C0538B22B8ABBCB008B37ED /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1CAB91A32B8B24CB00010986 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1CAB91AF2B8B24CD00010986 /* Preview Assets.xcassets in Resources */,
+				1CAB91AC2B8B24CD00010986 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1C05388C2B8AB7B1008B37ED /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1C0538982B8AB7B1008B37ED /* ContentView.swift in Sources */,
+				1C0538962B8AB7B1008B37ED /* BenBio Watch App.swift in Sources */,
+				1C69A1292B8BA768009395BD /* DatePickerView.swift in Sources */,
+				1C69A1272B8BA0CB009395BD /* Functions.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1C0538A72B8ABBCA008B37ED /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1C0538B02B8ABBCA008B37ED /* ContentView.swift in Sources */,
+				1C0538AE2B8ABBCA008B37ED /* BenBio iOS App.swift in Sources */,
+				1C69A1252B8B9FC6009395BD /* Functions.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1CAB91A12B8B24CB00010986 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1CAB91AA2B8B24CB00010986 /* ContentView.swift in Sources */,
+				1CAB91A82B8B24CB00010986 /* BenBio Mac App.swift in Sources */,
+				1C69A1262B8BA0CA009395BD /* Functions.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		1C0538932B8AB7B1008B37ED /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1C05388F2B8AB7B1008B37ED /* BenBio Watch App */;
+			targetProxy = 1C0538922B8AB7B1008B37ED /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		1C05389E2B8AB7B2008B37ED /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				WATCHOS_DEPLOYMENT_TARGET = 10.2;
+			};
+			name = Debug;
+		};
+		1C05389F2B8AB7B2008B37ED /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				WATCHOS_DEPLOYMENT_TARGET = 10.2;
+			};
+			name = Release;
+		};
+		1C0538A12B8AB7B2008B37ED /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 7;
+				DEVELOPMENT_ASSET_PATHS = "\"BenBio Watch App/Preview Content\"";
+				DEVELOPMENT_TEAM = 728QJVXW3S;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = BenBioWatch;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKWatchOnly = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 0.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.benbox.BenBioWatch.Watch.Watch;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 10.2;
+			};
+			name = Debug;
+		};
+		1C0538A22B8AB7B2008B37ED /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 7;
+				DEVELOPMENT_ASSET_PATHS = "\"BenBio Watch App/Preview Content\"";
+				DEVELOPMENT_TEAM = 728QJVXW3S;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = BenBioWatch;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKWatchOnly = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 0.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.benbox.BenBioWatch.Watch.Watch;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 10.2;
+			};
+			name = Release;
+		};
+		1C0538A52B8AB7B2008B37ED /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 7;
+				DEVELOPMENT_TEAM = 728QJVXW3S;
+				INFOPLIST_KEY_CFBundleDisplayName = BenBioWatch;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				MARKETING_VERSION = 0.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.benbox.BenBioWatch.Watch;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		1C0538A62B8AB7B2008B37ED /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 7;
+				DEVELOPMENT_TEAM = 728QJVXW3S;
+				INFOPLIST_KEY_CFBundleDisplayName = BenBioWatch;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				MARKETING_VERSION = 0.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.benbox.BenBioWatch.Watch;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		1C0538B72B8ABBCB008B37ED /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 7;
+				DEVELOPMENT_ASSET_PATHS = "\"BenBio iOS App/Preview Content\"";
+				DEVELOPMENT_TEAM = 728QJVXW3S;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = BenBioWatch;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 0.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.benbox.BenBioWatch.iPhone;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		1C0538B82B8ABBCB008B37ED /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 7;
+				DEVELOPMENT_ASSET_PATHS = "\"BenBio iOS App/Preview Content\"";
+				DEVELOPMENT_TEAM = 728QJVXW3S;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = BenBioWatch;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 0.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.benbox.BenBioWatch.iPhone;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		1CAB91B12B8B24CD00010986 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "BenBio Mac App/BenBio_Mac_App.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 7;
+				DEVELOPMENT_ASSET_PATHS = "\"BenBio Mac App/Preview Content\"";
+				DEVELOPMENT_TEAM = 728QJVXW3S;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = BenBioWatch;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.2;
+				MARKETING_VERSION = 0.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.benbox.BenBioWatch.Watch;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		1CAB91B22B8B24CD00010986 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "BenBio Mac App/BenBio_Mac_App.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 7;
+				DEVELOPMENT_ASSET_PATHS = "\"BenBio Mac App/Preview Content\"";
+				DEVELOPMENT_TEAM = 728QJVXW3S;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = BenBioWatch;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.2;
+				MARKETING_VERSION = 0.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.benbox.BenBioWatch.Watch;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1C0538872B8AB7B0008B37ED /* Build configuration list for PBXProject "BenBio" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1C05389E2B8AB7B2008B37ED /* Debug */,
+				1C05389F2B8AB7B2008B37ED /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1C0538A02B8AB7B2008B37ED /* Build configuration list for PBXNativeTarget "BenBio Watch App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1C0538A12B8AB7B2008B37ED /* Debug */,
+				1C0538A22B8AB7B2008B37ED /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1C0538A42B8AB7B2008B37ED /* Build configuration list for PBXNativeTarget "BenBio" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1C0538A52B8AB7B2008B37ED /* Debug */,
+				1C0538A62B8AB7B2008B37ED /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1C0538B62B8ABBCB008B37ED /* Build configuration list for PBXNativeTarget "BenBio iOS App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1C0538B72B8ABBCB008B37ED /* Debug */,
+				1C0538B82B8ABBCB008B37ED /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1CAB91B32B8B24CD00010986 /* Build configuration list for PBXNativeTarget "BenBio Mac App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1CAB91B12B8B24CD00010986 /* Debug */,
+				1CAB91B22B8B24CD00010986 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 1C0538842B8AB7B0008B37ED /* Project object */;
+}
