@@ -24,6 +24,10 @@
 		1CAB91AA2B8B24CB00010986 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CAB91A92B8B24CB00010986 /* ContentView.swift */; };
 		1CAB91AC2B8B24CD00010986 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1CAB91AB2B8B24CD00010986 /* Assets.xcassets */; };
 		1CAB91AF2B8B24CD00010986 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1CAB91AE2B8B24CD00010986 /* Preview Assets.xcassets */; };
+		B575F2872BBADDDB004F6441 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = B575F2862BBADDDB004F6441 /* PrivacyInfo.xcprivacy */; };
+		B575F2882BBADDDB004F6441 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = B575F2862BBADDDB004F6441 /* PrivacyInfo.xcprivacy */; };
+		B575F2892BBADDDB004F6441 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = B575F2862BBADDDB004F6441 /* PrivacyInfo.xcprivacy */; };
+		B575F28A2BBADDDB004F6441 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = B575F2862BBADDDB004F6441 /* PrivacyInfo.xcprivacy */; };
 		B5BD9B972BBA0CA900F71028 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = B5BD9B952BBA0CA900F71028 /* LICENSE */; };
 		B5BD9B982BBA0CA900F71028 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = B5BD9B962BBA0CA900F71028 /* README.md */; };
 /* End PBXBuildFile section */
@@ -72,6 +76,7 @@
 		1CAB91AB2B8B24CD00010986 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1CAB91AE2B8B24CD00010986 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		1CAB91B02B8B24CD00010986 /* BenBio_Mac_App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BenBio_Mac_App.entitlements; sourceTree = "<group>"; };
+		B575F2862BBADDDB004F6441 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		B5BD9B952BBA0CA900F71028 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		B5BD9B962BBA0CA900F71028 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -104,6 +109,7 @@
 		1C0538832B8AB7B0008B37ED = {
 			isa = PBXGroup;
 			children = (
+				B575F2862BBADDDB004F6441 /* PrivacyInfo.xcprivacy */,
 				B5BD9B952BBA0CA900F71028 /* LICENSE */,
 				B5BD9B962BBA0CA900F71028 /* README.md */,
 				1C69A1242B8B9E8D009395BD /* Functions.swift */,
@@ -306,6 +312,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B575F2872BBADDDB004F6441 /* PrivacyInfo.xcprivacy in Resources */,
 				B5BD9B982BBA0CA900F71028 /* README.md in Resources */,
 				B5BD9B972BBA0CA900F71028 /* LICENSE in Resources */,
 			);
@@ -315,6 +322,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B575F2882BBADDDB004F6441 /* PrivacyInfo.xcprivacy in Resources */,
 				1C05389D2B8AB7B2008B37ED /* Preview Assets.xcassets in Resources */,
 				1C05389A2B8AB7B2008B37ED /* Assets.xcassets in Resources */,
 			);
@@ -324,6 +332,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B575F2892BBADDDB004F6441 /* PrivacyInfo.xcprivacy in Resources */,
 				1C0538B52B8ABBCB008B37ED /* Preview Assets.xcassets in Resources */,
 				1C0538B22B8ABBCB008B37ED /* Assets.xcassets in Resources */,
 			);
@@ -333,6 +342,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B575F28A2BBADDDB004F6441 /* PrivacyInfo.xcprivacy in Resources */,
 				1CAB91AF2B8B24CD00010986 /* Preview Assets.xcassets in Resources */,
 				1CAB91AC2B8B24CD00010986 /* Assets.xcassets in Resources */,
 			);
