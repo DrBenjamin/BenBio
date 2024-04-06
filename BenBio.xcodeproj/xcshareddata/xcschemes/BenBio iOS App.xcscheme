@@ -40,6 +40,17 @@
                ReferencedContainer = "container:BenBio.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "B5594A782BC199AE0000E46C"
+               BuildableName = "BenBio iOS AppUITests.xctest"
+               BlueprintName = "BenBio iOS AppUITests"
+               ReferencedContainer = "container:BenBio.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction

@@ -26,6 +26,9 @@
 		1CAB91AF2B8B24CD00010986 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1CAB91AE2B8B24CD00010986 /* Preview Assets.xcassets */; };
 		1CBC14D52BC01E610088292E /* RhythmsCalcTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CBC14D42BC01E610088292E /* RhythmsCalcTests.swift */; };
 		1CBC14D72BC023C20088292E /* DateFormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CBC14D62BC023C20088292E /* DateFormatterTests.swift */; };
+		B5594A7C2BC199AE0000E46C /* BenBio_iOS_AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5594A7B2BC199AE0000E46C /* BenBio_iOS_AppUITests.swift */; };
+		B5594A7E2BC199AE0000E46C /* BenBio_iOS_AppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5594A7D2BC199AE0000E46C /* BenBio_iOS_AppUITestsLaunchTests.swift */; };
+		B5594A852BC1A1A40000E46C /* BenBio_iOS_AppUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5594A842BC1A1A40000E46C /* BenBio_iOS_AppUITest.swift */; };
 		B575F2872BBADDDB004F6441 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = B575F2862BBADDDB004F6441 /* PrivacyInfo.xcprivacy */; };
 		B575F2882BBADDDB004F6441 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = B575F2862BBADDDB004F6441 /* PrivacyInfo.xcprivacy */; };
 		B575F2892BBADDDB004F6441 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = B575F2862BBADDDB004F6441 /* PrivacyInfo.xcprivacy */; };
@@ -44,6 +47,13 @@
 			remoteInfo = "BenBio Watch App";
 		};
 		1CBC14CF2BC01E0E0088292E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1C0538842B8AB7B0008B37ED /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1C0538AA2B8ABBCA008B37ED;
+			remoteInfo = "BenBio iOS App";
+		};
+		B5594A7F2BC199AE0000E46C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 1C0538842B8AB7B0008B37ED /* Project object */;
 			proxyType = 1;
@@ -89,6 +99,10 @@
 		1CBC14CB2BC01E0E0088292E /* BenBio iOS AppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "BenBio iOS AppTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1CBC14D42BC01E610088292E /* RhythmsCalcTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RhythmsCalcTests.swift; sourceTree = "<group>"; };
 		1CBC14D62BC023C20088292E /* DateFormatterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatterTests.swift; sourceTree = "<group>"; };
+		B5594A792BC199AE0000E46C /* BenBio iOS AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "BenBio iOS AppUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B5594A7B2BC199AE0000E46C /* BenBio_iOS_AppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BenBio_iOS_AppUITests.swift; sourceTree = "<group>"; };
+		B5594A7D2BC199AE0000E46C /* BenBio_iOS_AppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BenBio_iOS_AppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		B5594A842BC1A1A40000E46C /* BenBio_iOS_AppUITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BenBio_iOS_AppUITest.swift; sourceTree = "<group>"; };
 		B575F2862BBADDDB004F6441 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		B5BD9B952BBA0CA900F71028 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		B5BD9B962BBA0CA900F71028 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -124,6 +138,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B5594A762BC199AE0000E46C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -139,6 +160,7 @@
 				1C0538AC2B8ABBCA008B37ED /* BenBio iOS App */,
 				1CAB91A62B8B24CB00010986 /* BenBio Mac App */,
 				1CBC14CC2BC01E0E0088292E /* BenBio iOS AppTests */,
+				B5594A7A2BC199AE0000E46C /* BenBio iOS AppUITests */,
 				1C05388B2B8AB7B1008B37ED /* Products */,
 			);
 			sourceTree = "<group>";
@@ -151,6 +173,7 @@
 				1C0538AB2B8ABBCA008B37ED /* BenBio iOS App.app */,
 				1CAB91A52B8B24CB00010986 /* BenBio Mac App.app */,
 				1CBC14CB2BC01E0E0088292E /* BenBio iOS AppTests.xctest */,
+				B5594A792BC199AE0000E46C /* BenBio iOS AppUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -221,6 +244,16 @@
 				1CBC14D62BC023C20088292E /* DateFormatterTests.swift */,
 			);
 			path = "BenBio iOS AppTests";
+			sourceTree = "<group>";
+		};
+		B5594A7A2BC199AE0000E46C /* BenBio iOS AppUITests */ = {
+			isa = PBXGroup;
+			children = (
+				B5594A842BC1A1A40000E46C /* BenBio_iOS_AppUITest.swift */,
+				B5594A7B2BC199AE0000E46C /* BenBio_iOS_AppUITests.swift */,
+				B5594A7D2BC199AE0000E46C /* BenBio_iOS_AppUITestsLaunchTests.swift */,
+			);
+			path = "BenBio iOS AppUITests";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -312,6 +345,24 @@
 			productReference = 1CBC14CB2BC01E0E0088292E /* BenBio iOS AppTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		B5594A782BC199AE0000E46C /* BenBio iOS AppUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B5594A832BC199AE0000E46C /* Build configuration list for PBXNativeTarget "BenBio iOS AppUITests" */;
+			buildPhases = (
+				B5594A752BC199AE0000E46C /* Sources */,
+				B5594A762BC199AE0000E46C /* Frameworks */,
+				B5594A772BC199AE0000E46C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B5594A802BC199AE0000E46C /* PBXTargetDependency */,
+			);
+			name = "BenBio iOS AppUITests";
+			productName = "BenBio iOS AppUITests";
+			productReference = B5594A792BC199AE0000E46C /* BenBio iOS AppUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -339,6 +390,10 @@
 						CreatedOnToolsVersion = 15.3;
 						TestTargetID = 1C0538AA2B8ABBCA008B37ED;
 					};
+					B5594A782BC199AE0000E46C = {
+						CreatedOnToolsVersion = 15.3;
+						TestTargetID = 1C0538AA2B8ABBCA008B37ED;
+					};
 				};
 			};
 			buildConfigurationList = 1C0538872B8AB7B0008B37ED /* Build configuration list for PBXProject "BenBio" */;
@@ -359,6 +414,7 @@
 				1C0538AA2B8ABBCA008B37ED /* BenBio iOS App */,
 				1CAB91A42B8B24CB00010986 /* BenBio Mac App */,
 				1CBC14CA2BC01E0E0088292E /* BenBio iOS AppTests */,
+				B5594A782BC199AE0000E46C /* BenBio iOS AppUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -412,6 +468,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B5594A772BC199AE0000E46C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -455,6 +518,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B5594A752BC199AE0000E46C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B5594A852BC1A1A40000E46C /* BenBio_iOS_AppUITest.swift in Sources */,
+				B5594A7C2BC199AE0000E46C /* BenBio_iOS_AppUITests.swift in Sources */,
+				B5594A7E2BC199AE0000E46C /* BenBio_iOS_AppUITestsLaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -467,6 +540,11 @@
 			isa = PBXTargetDependency;
 			target = 1C0538AA2B8ABBCA008B37ED /* BenBio iOS App */;
 			targetProxy = 1CBC14CF2BC01E0E0088292E /* PBXContainerItemProxy */;
+		};
+		B5594A802BC199AE0000E46C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1C0538AA2B8ABBCA008B37ED /* BenBio iOS App */;
+			targetProxy = B5594A7F2BC199AE0000E46C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -878,6 +956,43 @@
 			};
 			name = Release;
 		};
+		B5594A812BC199AE0000E46C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 728QJVXW3S;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.benbox.benbio.BenBio-iOS-AppUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "BenBio iOS App";
+			};
+			name = Debug;
+		};
+		B5594A822BC199AE0000E46C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 728QJVXW3S;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.benbox.benbio.BenBio-iOS-AppUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "BenBio iOS App";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -931,6 +1046,15 @@
 			buildConfigurations = (
 				1CBC14D12BC01E0E0088292E /* Debug */,
 				1CBC14D22BC01E0E0088292E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B5594A832BC199AE0000E46C /* Build configuration list for PBXNativeTarget "BenBio iOS AppUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B5594A812BC199AE0000E46C /* Debug */,
+				B5594A822BC199AE0000E46C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
