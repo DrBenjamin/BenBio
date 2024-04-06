@@ -17,7 +17,7 @@ func dateWithoutTime(date: Date) -> Date {
 public func DateFormat() -> DateFormatter {
     let x = DateFormatter()
     x.dateFormat = "dd/MM/yyyy"
-    x.timeZone = TimeZone(abbreviation: "GMT")
+    x.timeZone = TimeZone(abbreviation: "GMT+1:00")
     return x
 }
 
