@@ -1,36 +1,39 @@
 import streamlit as st
 import numpy as np
 import matplotlib.pyplot as plt
+import pandas as pd
 
-def calculate_hrv(rr_intervals):
-    # RR-Intervalle in Sekunden umwandeln
-    rr_intervals = np.array(rr_intervals) / 1000  # von ms zu s
-    # RMSSD berechnen
-    rmssd = np.sqrt(np.mean(np.square(np.diff(rr_intervals))))
-    return rmssd
+def csv_reader(file_path):
+    # Lesen der CSV-Datei
+    df = pd.read_csv(file_path)
+    # Extrahieren der SDNN-Werte aus der Spalte 'SDNN'
+    sdnn_values = df['SDNN'].tolist()
+    return sdnn_values
 
-# Beispiel RR-Intervalle (in Millisekunden)
-rr_intervals = [800, 810, 790, 760, 770, 800, 790]
-rmssd_value = calculate_hrv(rr_intervals)
+# Load SDNN values
+csv_file = st.file_uploader('Upload CSV file with SDNN values', type='csv')
+if csv_file:
+  sdnn_values = csv_reader(csv_file)
+  print(sdnn_values)
 
-# Einstufung des Stresslevels anhand der RMSSD-Werte
-if rmssd_value > 50:
-    stress_level = "Niedriger Stress"
-elif 25 < rmssd_value <= 50:
-    stress_level = "Mittlerer Stress"
-else:
-    stress_level = "Hoher Stress"
+  # Einstufung des Stresslevels anhand der RMSSD-Werte
+  if np.mean(sdnn_values) > 50:
+      stress_level = "Niedriger Stress"
+  elif 25 < np.mean(sdnn_values) <= 50:
+      stress_level = "Mittlerer Stress"
+  else:
+      stress_level = "Hoher Stress"
 
-# Visualisierung der HRV
-st.title ('HRV Analyse: RR-Intervalle')
-fig, ax = plt.subplots(figsize=(10, 5), facecolor='none')
-ax.set_facecolor('none')
-ax.plot(rr_intervals, marker='o')
-ax.set_title('HRV Analyse: RR-Intervalle', color='gray')
-ax.set_xlabel('Anzahl der Herzschläge (aufeinanderfolgende Intervalle)', color='gray')
-ax.set_ylabel('RR-Intervalle (ms)', color='gray')
-ax.axhline(y=1000, color='r', linestyle='--', label='Durchschnitt')
-ax.text(0, 1000.1, 'Wertung: {:.2f} ms\nStresslevel: {}'.format(rmssd_value, stress_level), fontsize=10, bbox=dict(facecolor='white', alpha=0.5))
-ax.legend()
-ax.grid()
-st.pyplot(fig)
+  # Visualisierung der HRV
+  st.title ('HRV Analyse: SDNN')
+  fig, ax = plt.subplots(figsize=(10, 5), facecolor='none')
+  ax.set_facecolor('none')
+  ax.plot(sdnn_values, marker='o')
+  ax.set_title('Standard Deviation of the inter-beat (RR) intervals between normal heartbeats (SDNN)', color='gray')
+  ax.set_xlabel('SDNNs', color='gray')
+  ax.set_ylabel('Intervalls in ms', color='gray')
+  ax.axhline(y=np.mean(sdnn_values), color='r', linestyle='--', label=f"Durchschnitt ({np.mean(sdnn_values):.2f} ms)")
+  ax.text(0, np.mean(sdnn_values), 'Wertung: {:.2f} ms\nStresslevel: {}'.format(np.mean(sdnn_values), stress_level), fontsize=10, bbox=dict(facecolor='white', alpha=0.5))
+  ax.legend()
+  ax.grid()
+  st.pyplot(fig)
