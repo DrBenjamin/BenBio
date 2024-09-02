@@ -1,3 +1,4 @@
+import streamlit as st
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -21,13 +22,15 @@ else:
     stress_level = "Hoher Stress"
 
 # Visualisierung der HRV
-plt.figure(figsize=(10, 5))
-plt.plot(rr_intervals, marker='o')
-plt.title('HRV Analyse: RR-Intervalle')
-plt.xlabel('Anzahl der Herzschläge (aufeinanderfolgende Intervalle)')
-plt.ylabel('RR-Intervalle (ms)')
-plt.axhline(y=1000, color='r', linestyle='--', label='Durchschnitt')
-plt.text(0, 1000.1, 'Wertung: {:.2f} ms\nStresslevel: {}'.format(rmssd_value, stress_level), fontsize=10, bbox=dict(facecolor='white', alpha=0.5))
-plt.legend()
-plt.grid()
-plt.show()
+st.title ('HRV Analyse: RR-Intervalle')
+fig, ax = plt.subplots(figsize=(10, 5), facecolor='none')
+ax.set_facecolor('none')
+ax.plot(rr_intervals, marker='o')
+ax.set_title('HRV Analyse: RR-Intervalle', color='gray')
+ax.set_xlabel('Anzahl der Herzschläge (aufeinanderfolgende Intervalle)', color='gray')
+ax.set_ylabel('RR-Intervalle (ms)', color='gray')
+ax.axhline(y=1000, color='r', linestyle='--', label='Durchschnitt')
+ax.text(0, 1000.1, 'Wertung: {:.2f} ms\nStresslevel: {}'.format(rmssd_value, stress_level), fontsize=10, bbox=dict(facecolor='white', alpha=0.5))
+ax.legend()
+ax.grid()
+st.pyplot(fig)
