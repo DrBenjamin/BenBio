@@ -287,27 +287,52 @@ struct ContentView: View {
             HKQuantityType.quantityType(forIdentifier: .vo2Max)!,
         ]
 
-        // Erstellen Sie eine Abfrage für heartRateVariabilitySDNN
-        let query = HKSampleQuery(sampleType: heartRateVariabilityType, predicate: nil, limit: HKObjectQueryNoLimit, sortDescriptors: nil) { (query, results, error) in
-            guard let results = results as? [HKQuantitySample] else {
-                print("Fehler beim Abrufen der Daten: \(String(describing: error))")
+        // Create instance of HKQuantityType for rr interval
+        let rrIntervalType: Set = [
+            HKQuantityType.quantityType(forIdentifier: .heartRateVariabilitySDNN)!
+        ]
+
+        print("Requesting authorization...")
+        healthStore.requestAuthorization(toShare: nil, read: rrIntervalType) { success, error in
+            if let error = error {
+                print("Authorization request failed: \(error.localizedDescription)")
                 return
             }
-            
-            for result in results {
-                let value = result.quantity.doubleValue(for: HKUnit.secondUnit(with: .milli))
-                print("Heart Rate Variability SDNN: \(value) ms")
+            if success {
+                print("Authorization granted")
+                
+                guard let type = HKQuantityType.quantityType(forIdentifier: .heartRateVariabilitySDNN) else {
+                    print("Failed to create quantity type")
+                    return
+                }
+                
+                let predicate = HKQuery.predicateForSamples(withStart: Date.distantPast, end: Date(), options: .strictStartDate)
+                let query = HKSampleQuery(sampleType: type, predicate: predicate, limit: HKObjectQueryNoLimit, sortDescriptors: nil) { (query, results, error)
+                    in
+                    if let error = error {
+                        print("Query Error: \(error.localizedDescription)")
+                        return
+                    }
+                    
+                    guard let results = results as? [HKQuantitySample] else {
+                        print("Fehler beim Abrufen der Daten: \(String(describing: error))")
+                        return
+                    }
+                    
+                    for result in results {
+                        let value = result.quantity.doubleValue(for: HKUnit(from: "ms"))
+                        print(value)
+                        //print(value)
+                    }
+                }
+                
+                print("Executing query...")
+                healthStore.execute(query)
+            } else {
+                print("Authorization denied")
             }
-        }
+        }//: healthStore
         
-        // Führen Sie die Abfrage aus
-        healthStore.execute(query)
-        
-        if !HKHealthStore.isHealthDataAvailable() {
-            print("Health data is not available")
-            return
-}
-        print("Requesting authorization...")
         healthStore.requestAuthorization(toShare: nil, read: allTypes) { success, error in
             if let error = error {
                 print("Authorization request failed: \(error.localizedDescription)")
@@ -333,18 +358,18 @@ struct ContentView: View {
                         print("No samples found")
                         return
                     }
-
+                    
                     let vo2MaxValues = samples.map { $0.quantity.doubleValue(for: HKUnit(from: "mL/min·kg")) }
                     DispatchQueue.main.async {
                         self.vo2MaxValues = vo2MaxValues
+                    }
                 }
-            }
                 print("Executing query...")
                 healthStore.execute(query)
             } else {
                 print("Authorization denied")
             }
-        }
+        }//: healthStore
     }//: getCardiofitness
 } //: ContentView
 
