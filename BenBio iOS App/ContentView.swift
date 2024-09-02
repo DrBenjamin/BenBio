@@ -1,16 +1,17 @@
 //
 //  ContentView.swift
-//  BenBio Watch iOS App
+//  BenBio iOS App
 //
 //  Created by Gross, Benjamin on 25.02.24.
 //
 // Imports
 import SwiftUI
+import HealthKit
 
 // Set variables
-var birthday: String? = defaults.string(forKey: "birthday")
-var components = DateComponents()
-var calendarDate  = DateComponents()
+nonisolated(unsafe) var birthday: String? = defaults.string(forKey: "birthday")
+nonisolated(unsafe) var components = DateComponents()
+nonisolated(unsafe) var calendarDate  = DateComponents()
 
 struct ContentView: View {
     // Set variables
@@ -25,6 +26,7 @@ struct ContentView: View {
         return calendar.dateComponents([.day, .month, .year], from: Date())
     }()
     @State private var selectedDate: Date
+    @State private var vo2MaxValues: [Double] = []
     var selectedDateProxy: Binding<Date> {
         Binding<Date>(
             get: {
@@ -123,13 +125,10 @@ struct ContentView: View {
             .aspectRatio(contentMode: .fill)
             .ignoresSafeArea()
         VStack {
-            Text("").font(.system(size: 22))
-            
-            Spacer()
             DatePicker("Select your birthday", selection: selectedDateProxy, displayedComponents: .date)
             .datePickerStyle(WheelDatePickerStyle())
             Spacer()
-        
+
             Group {
                 if physical < -0.05 {
                     if physical > physical_1 {
@@ -230,6 +229,9 @@ struct ContentView: View {
             } //: Group
             
             Group {
+                if !vo2MaxValues.isEmpty && vo2MaxValues[0] > 0 {
+                    Text("Cardiofitness: \(String(vo2MaxValues.last ?? 0))").font(.system(size: 12))
+                }
                 if physical >= -0.05 && physical <= 0.05 || emotional >= -0.05 && emotional <= 0.05 || mental >= -0.05 && mental <= 0.05 {
                     Text("Advise ⚠️").font(.system(size: 24)).foregroundStyle(.teal)
                 } else {
@@ -246,6 +248,7 @@ struct ContentView: View {
             } //: Group
             .padding()
         } //: VStack
+        .onAppear {getCardiofitness()}
     } //: View
     
     func refreshView() {
@@ -255,7 +258,74 @@ struct ContentView: View {
         physical_1 = defaults.float(forKey: "physical_1")
         emotional_1 = defaults.float(forKey: "emotional_1")
         mental_1 = defaults.float(forKey: "mental_1")
+        
+        //getHRVdata()
+        print(getCardiofitness())
     } //: refreshView
+    
+    // Retrieve HRV data from Apple health
+    func getHRVdata() {
+        let healthStore = HKHealthStore()
+        let type = HKQuantityType.quantityType(forIdentifier: .heartRateVariabilitySDNN)
+        let predicate = HKQuery.predicateForSamples(withStart: Date.distantPast, end: Date(), options: .strictStartDate)
+        let query = HKStatisticsQuery(quantityType: type!, quantitySamplePredicate: predicate, options: .cumulativeSum) { (_, result, error) in
+            guard result != nil else {
+                if let error = error {
+                    print("Error: \(error.localizedDescription)")
+                }
+                return
+            }   
+        }
+        healthStore.execute(query)
+        //print(query)
+    } //: getHRVdata
+    
+    // Retrieve Cardiofitness value from Apple health
+    func getCardiofitness() {
+        let healthStore = HKHealthStore()
+        let allTypes: Set = [
+            HKQuantityType.quantityType(forIdentifier: .vo2Max)!
+        ]
+        
+        print("Requesting authorization...")
+        healthStore.requestAuthorization(toShare: nil, read: allTypes) { success, error in
+            if let error = error {
+                print("Authorization request failed: \(error.localizedDescription)")
+                return
+            }
+            if success {
+                print("Authorization granted")
+                
+                guard let type = HKQuantityType.quantityType(forIdentifier: .vo2Max) else {
+                    print("Failed to create quantity type")
+                    return
+                }
+                
+                let predicate = HKQuery.predicateForSamples(withStart: Date.distantPast, end: Date(), options: .strictStartDate)
+                let query = HKSampleQuery(sampleType: type, predicate: predicate, limit: HKObjectQueryNoLimit, sortDescriptors: nil) { (_, samples, error)
+                    in
+                    if let error = error {
+                        print("Query Error: \(error.localizedDescription)")
+                        return
+                    }
+                    
+                    guard let samples = samples as? [HKQuantitySample] else {
+                        print("No samples found")
+                        return
+                    }
+
+                    let vo2MaxValues = samples.map { $0.quantity.doubleValue(for: HKUnit(from: "mL/min·kg")) }
+                    DispatchQueue.main.async {
+                        self.vo2MaxValues = vo2MaxValues
+                }
+            }
+                print("Executing query...")
+                healthStore.execute(query)
+            } else {
+                print("Authorization denied")
+            }
+        }
+    }//: getCardiofitness
 } //: ContentView
 
 struct ContentView_Previews: PreviewProvider {

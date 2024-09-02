@@ -99,6 +99,7 @@
 		1CBC14CB2BC01E0E0088292E /* BenBio iOS AppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "BenBio iOS AppTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1CBC14D42BC01E610088292E /* RhythmsCalcTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RhythmsCalcTests.swift; sourceTree = "<group>"; };
 		1CBC14D62BC023C20088292E /* DateFormatterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatterTests.swift; sourceTree = "<group>"; };
+		B52A787A2C5650AC00DF4F88 /* BenBio-iOS-App-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "BenBio-iOS-App-Info.plist"; sourceTree = SOURCE_ROOT; };
 		B5594A792BC199AE0000E46C /* BenBio iOS AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "BenBio iOS AppUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5594A7B2BC199AE0000E46C /* BenBio_iOS_AppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BenBio_iOS_AppUITests.swift; sourceTree = "<group>"; };
 		B5594A7D2BC199AE0000E46C /* BenBio_iOS_AppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BenBio_iOS_AppUITestsLaunchTests.swift; sourceTree = "<group>"; };
@@ -107,6 +108,8 @@
 		B5BD9B952BBA0CA900F71028 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		B5BD9B962BBA0CA900F71028 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		B5C7E4062BC15E0E0009AA0E /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = SOURCE_ROOT; };
+		B5DABCF02C564C0F0088F122 /* BenBio iOS App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "BenBio iOS App.entitlements"; sourceTree = "<group>"; };
+		B5DABCF12C564C1B0088F122 /* BenBio Watch App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "BenBio Watch App.entitlements"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -181,6 +184,7 @@
 		1C0538942B8AB7B1008B37ED /* BenBio Watch App */ = {
 			isa = PBXGroup;
 			children = (
+				B5DABCF12C564C1B0088F122 /* BenBio Watch App.entitlements */,
 				1C0538992B8AB7B2008B37ED /* Assets.xcassets */,
 				1C0538952B8AB7B1008B37ED /* BenBio Watch App.swift */,
 				1C0538972B8AB7B1008B37ED /* ContentView.swift */,
@@ -201,6 +205,8 @@
 		1C0538AC2B8ABBCA008B37ED /* BenBio iOS App */ = {
 			isa = PBXGroup;
 			children = (
+				B52A787A2C5650AC00DF4F88 /* BenBio-iOS-App-Info.plist */,
+				B5DABCF02C564C0F0088F122 /* BenBio iOS App.entitlements */,
 				1C0538B12B8ABBCB008B37ED /* Assets.xcassets */,
 				1C0538AD2B8ABBCA008B37ED /* BenBio iOS App.swift */,
 				1C0538AF2B8ABBCA008B37ED /* ContentView.swift */,
@@ -371,7 +377,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1530;
-				LastUpgradeCheck = 1530;
+				LastUpgradeCheck = 1600;
 				TargetAttributes = {
 					1C0538892B8AB7B1008B37ED = {
 						CreatedOnToolsVersion = 15.2;
@@ -676,6 +682,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "BenBio Watch App/BenBio Watch App.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 7;
@@ -700,7 +707,7 @@
 				SWIFT_STRICT_CONCURRENCY = complete;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 10.2;
+				WATCHOS_DEPLOYMENT_TARGET = 11.0;
 			};
 			name = Debug;
 		};
@@ -709,6 +716,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "BenBio Watch App/BenBio Watch App.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 7;
@@ -734,20 +742,19 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				VALIDATE_PRODUCT = YES;
-				WATCHOS_DEPLOYMENT_TARGET = 10.2;
+				WATCHOS_DEPLOYMENT_TARGET = 11.0;
 			};
 			name = Release;
 		};
 		1C0538A52B8AB7B2008B37ED /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_TEAM = 728QJVXW3S;
 				INFOPLIST_KEY_CFBundleDisplayName = BenBioWatch;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				MARKETING_VERSION = 0.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = org.benbox.BenBioWatch.Watch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -760,13 +767,12 @@
 		1C0538A62B8AB7B2008B37ED /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_TEAM = 728QJVXW3S;
 				INFOPLIST_KEY_CFBundleDisplayName = BenBioWatch;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				MARKETING_VERSION = 0.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = org.benbox.BenBioWatch.Watch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -781,19 +787,24 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "BenBio iOS App/BenBio iOS App.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_ASSET_PATHS = "\"BenBio iOS App/Preview Content\"";
 				DEVELOPMENT_TEAM = 728QJVXW3S;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "BenBio-iOS-App-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = BenBioWatch;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "BenBioWatch wants to access your health data in ordner to analyze your health and best advise";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "BenBioWatch wants to access your health data in ordner to analyze your health and best advise";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -817,19 +828,24 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "BenBio iOS App/BenBio iOS App.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_ASSET_PATHS = "\"BenBio iOS App/Preview Content\"";
 				DEVELOPMENT_TEAM = 728QJVXW3S;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "BenBio-iOS-App-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = BenBioWatch;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "BenBioWatch wants to access your health data in ordner to analyze your health and best advise";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "BenBioWatch wants to access your health data in ordner to analyze your health and best advise";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -871,7 +887,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 14.2;
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
 				MARKETING_VERSION = 0.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = org.benbox.BenBioWatch.Watch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -904,7 +920,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 14.2;
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
 				MARKETING_VERSION = 0.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = org.benbox.BenBioWatch.Watch;
 				PRODUCT_NAME = "$(TARGET_NAME)";

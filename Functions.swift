@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-let defaults = UserDefaults.standard
+nonisolated(unsafe) let defaults = UserDefaults.standard
 
 func dateWithoutTime(date: Date) -> Date {
     return Calendar.current.startOfDay(for: date)

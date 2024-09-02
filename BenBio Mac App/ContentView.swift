@@ -8,9 +8,9 @@
 import SwiftUI
 
 // Set variables
-var birthday: String? = defaults.string(forKey: "birthday")
-var components = DateComponents()
-var calendarDate  = DateComponents()
+nonisolated(unsafe) var birthday: String? = defaults.string(forKey: "birthday")
+nonisolated(unsafe) var components = DateComponents()
+nonisolated(unsafe) var calendarDate  = DateComponents()
 
 struct ContentView: View {
     // Set variables
