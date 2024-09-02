@@ -1,7 +1,7 @@
 import streamlit as st
+import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-import pandas as pd
 
 def csv_reader(file_path):
     # Lesen der CSV-Datei
