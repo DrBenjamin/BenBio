@@ -285,10 +285,28 @@ struct ContentView: View {
         let healthStore = HKHealthStore()
         let allTypes: Set = [
             HKQuantityType.quantityType(forIdentifier: .vo2Max)!,
-            // Read HRW raw data
-            HKQuantityType.quantityType(forIdentifier: .heartRateVariabilitySDNN)!
         ]
+
+        // Erstellen Sie eine Abfrage für heartRateVariabilitySDNN
+        let query = HKSampleQuery(sampleType: heartRateVariabilityType, predicate: nil, limit: HKObjectQueryNoLimit, sortDescriptors: nil) { (query, results, error) in
+            guard let results = results as? [HKQuantitySample] else {
+                print("Fehler beim Abrufen der Daten: \(String(describing: error))")
+                return
+            }
+            
+            for result in results {
+                let value = result.quantity.doubleValue(for: HKUnit.secondUnit(with: .milli))
+                print("Heart Rate Variability SDNN: \(value) ms")
+            }
+        }
         
+        // Führen Sie die Abfrage aus
+        healthStore.execute(query)
+        
+        if !HKHealthStore.isHealthDataAvailable() {
+            print("Health data is not available")
+            return
+}
         print("Requesting authorization...")
         healthStore.requestAuthorization(toShare: nil, read: allTypes) { success, error in
             if let error = error {
