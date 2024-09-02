@@ -284,7 +284,9 @@ struct ContentView: View {
     func getCardiofitness() {
         let healthStore = HKHealthStore()
         let allTypes: Set = [
-            HKQuantityType.quantityType(forIdentifier: .vo2Max)!
+            HKQuantityType.quantityType(forIdentifier: .vo2Max)!,
+            // Read HRW raw data
+            HKQuantityType.quantityType(forIdentifier: .heartRateVariabilitySDNN)!
         ]
         
         print("Requesting authorization...")
