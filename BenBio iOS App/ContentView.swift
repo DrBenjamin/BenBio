@@ -303,9 +303,10 @@ struct ContentView: View {
                     }
                     
                     for result in results {
-                        print("Found sample: \(result)")
+                        //print("Found sample: \(result)")
+                        let date = result.startDate
                         let value = result.quantity.doubleValue(for: HKUnit(from: "ms"))
-                        print(value)
+                        print("\(date),\(value)")
                     }
                 }
                 
