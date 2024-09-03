@@ -248,7 +248,10 @@ struct ContentView: View {
             } //: Group
             .padding()
         } //: VStack
-        .onAppear {getCardiofitness()}
+        .onAppear {
+            getCardiofitness()
+            getHRVdata()
+        }
     } //: View
     
     func refreshView() {
@@ -263,37 +266,17 @@ struct ContentView: View {
         print(getCardiofitness())
     } //: refreshView
     
-    // Retrieve HRV data from Apple health
+    // Retrieve HRV SDNN data from Apple health
     func getHRVdata() {
         let healthStore = HKHealthStore()
-        let type = HKQuantityType.quantityType(forIdentifier: .heartRateVariabilitySDNN)
-        let predicate = HKQuery.predicateForSamples(withStart: Date.distantPast, end: Date(), options: .strictStartDate)
-        let query = HKStatisticsQuery(quantityType: type!, quantitySamplePredicate: predicate, options: .cumulativeSum) { (_, result, error) in
-            guard result != nil else {
-                if let error = error {
-                    print("Error: \(error.localizedDescription)")
-                }
-                return
-            }   
-        }
-        healthStore.execute(query)
-        //print(query)
-    } //: getHRVdata
-    
-    // Retrieve Cardiofitness value from Apple health
-    func getCardiofitness() {
-        let healthStore = HKHealthStore()
-        let allTypes: Set = [
-            HKQuantityType.quantityType(forIdentifier: .vo2Max)!,
-        ]
-
-        // Create instance of HKQuantityType for rr interval
-        let rrIntervalType: Set = [
-            HKQuantityType.quantityType(forIdentifier: .heartRateVariabilitySDNN)!
+        
+        // Create instance of HKQuantityType for heart rate variability SDNN
+        let sdnnType: Set = [
+            HKQuantityType.quantityType(forIdentifier: .heartRateVariabilitySDNN)!,
         ]
 
         print("Requesting authorization...")
-        healthStore.requestAuthorization(toShare: nil, read: rrIntervalType) { success, error in
+        healthStore.requestAuthorization(toShare: nil, read: sdnnType) { success, error in
             if let error = error {
                 print("Authorization request failed: \(error.localizedDescription)")
                 return
@@ -320,6 +303,7 @@ struct ContentView: View {
                     }
                     
                     for result in results {
+                        print("Found sample: \(result)")
                         let value = result.quantity.doubleValue(for: HKUnit(from: "ms"))
                         print(value)
                     }
@@ -331,7 +315,18 @@ struct ContentView: View {
                 print("Authorization denied")
             }
         }//: healthStore
+    } //: getHRVdata
+    
+    // Retrieve Cardiofitness value from Apple health
+    func getCardiofitness() {
+        let healthStore = HKHealthStore()
         
+        // Create instance of HKQuantityType for vo2Max
+        let allTypes: Set = [
+            HKQuantityType.quantityType(forIdentifier: .vo2Max)!,
+        ]
+        
+        print("Requesting authorization...")
         healthStore.requestAuthorization(toShare: nil, read: allTypes) { success, error in
             if let error = error {
                 print("Authorization request failed: \(error.localizedDescription)")
