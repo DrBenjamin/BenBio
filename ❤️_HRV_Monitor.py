@@ -22,7 +22,7 @@ if csv_file:
   
   # Filtern der Daten der letzten Woche
   start_day_sl, end_day_sl = st.slider('Select a range of days (0 = today, 0 - 7 = last week)', 0, 180, (0, 7))
-  end_day = datetime.now(pytz.utc) - timedelta(days=start_day_sl)
+  end_day = (datetime.now(pytz.utc) - timedelta(days=start_day_sl)) - timedelta(days=start_day_sl)
   start_day = end_day - timedelta(days=end_day_sl)
   sdnn_values = sdnn_values[(sdnn_values['Date'] >= start_day) & (sdnn_values['Date'] <= end_day)]
   sdnn_values['Date'] = sdnn_values['Date'].dt.strftime('%Y-%m-%d')
