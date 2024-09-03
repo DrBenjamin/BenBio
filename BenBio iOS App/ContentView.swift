@@ -322,7 +322,6 @@ struct ContentView: View {
                     for result in results {
                         let value = result.quantity.doubleValue(for: HKUnit(from: "ms"))
                         print(value)
-                        //print(value)
                     }
                 }
                 
