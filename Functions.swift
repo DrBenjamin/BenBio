@@ -37,13 +37,14 @@ public func calcRhythm(birthday : Date?) {
     today = DateFormat().date(from: full)
     let timeInterval = Int(exactly: (today?.timeIntervalSince(birthday!))!) ?? 0
     let delta = secondsToDays(seconds: timeInterval)
+    let delta_1 = secondsToDays(seconds: timeInterval - 86400)
 
-    // Calculate biorhythm
+    // Calculating biorhythms
     let dpi: Float = 2 * Float.pi
     defaults.set(sin(dpi * Float(delta) / 23), forKey: "physical")
     defaults.set(sin(dpi * Float(delta) / 28), forKey: "emotional")
     defaults.set(sin(dpi * Float(delta) / 33), forKey: "mental")
-    defaults.set(sin(dpi * Float(16308) / 23), forKey: "physical_1")
-    defaults.set(sin(dpi * Float(16308) / 28), forKey: "emotional_1")
-    defaults.set(sin(dpi * Float(16308) / 33), forKey: "mental_1")
+    defaults.set(sin(dpi * Float(delta_1) / 23), forKey: "physical_1")
+    defaults.set(sin(dpi * Float(delta_1) / 28), forKey: "emotional_1")
+    defaults.set(sin(dpi * Float(delta_1) / 33), forKey: "mental_1")
 }

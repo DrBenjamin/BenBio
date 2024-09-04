@@ -233,13 +233,13 @@ struct ContentView: View {
             Group {
                 VStack(spacing: 0) {
                     if !vo2MaxValue.isEmpty && vo2MaxValue[0] > 0 {
-                        Text("Cardiofitness: \(String(vo2MaxValue.last ?? 0))").font(.system(size: 12)).foregroundStyle(.teal)
+                        Text("Cardiofitness: \(String(vo2MaxValue.last ?? 0))").font(.system(size: 14)).foregroundStyle(.teal)
                     }
                     if !SDNNValue.isEmpty && SDNNValue != "" {
-                        Text("Stresslevel (today): \(SDNNValue)").font(.system(size: 12)).foregroundStyle(.teal)
+                        Text("Stresslevel (today): \(SDNNValue)").font(.system(size: 14)).foregroundStyle(.teal)
                     }
                     if !rMSSDValue.isEmpty && rMSSDValue != "" {
-                        Text("Stresslevel (now): \(rMSSDValue)").font(.system(size: 12)).foregroundStyle(.teal)
+                        Text("Stresslevel (now): \(rMSSDValue)").font(.system(size: 14)).foregroundStyle(.teal)
                     }
                 }
                 if physical >= -0.05 && physical <= 0.05 || emotional >= -0.05 && emotional <= 0.05 || mental >= -0.05 && mental <= 0.05 {
@@ -259,6 +259,7 @@ struct ContentView: View {
             .padding()
         } //: VStack
         .onAppear {
+            refreshView()
             getCardiofitness()
             getHRVdata()
         }
@@ -271,9 +272,6 @@ struct ContentView: View {
         physical_1 = defaults.float(forKey: "physical_1")
         emotional_1 = defaults.float(forKey: "emotional_1")
         mental_1 = defaults.float(forKey: "mental_1")
-        
-        //getHRVdata()
-        print(getCardiofitness())
     } //: refreshView
     
     // Retrieve HRV SDNN data from Apple health
@@ -325,15 +323,20 @@ struct ContentView: View {
                     DispatchQueue.main.async {
                         if stresslevel > 50 {
                             self.SDNNValue = "Low"
-                            self.rMSSDValue = "Low"
                         } else
                             if stresslevel > 25 {
-                            self.SDNNValue = "Medium"
-                            self.rMSSDValue = "Medium"
+                                self.SDNNValue = "Medium"
                         } else {
                             self.SDNNValue = "High"
-                            self.rMSSDValue = "High"
                         }
+                        if stresslevel_now > 50 {
+                            self.rMSSDValue = "Low"
+                        } else
+                            if stresslevel_now > 25 {
+                                self.rMSSDValue = "Medium"
+                            } else {
+                                self.rMSSDValue = "High"
+                            }
                     }
                 }
                 
