@@ -26,7 +26,9 @@ struct ContentView: View {
         return calendar.dateComponents([.day, .month, .year], from: Date())
     }()
     @State private var selectedDate: Date
-    @State private var vo2MaxValues: [Double] = []
+    @State private var vo2MaxValue: [Double] = []
+    @State private var SDNNValue: String = ""
+    @State private var rMSSDValue: String = ""
     var selectedDateProxy: Binding<Date> {
         Binding<Date>(
             get: {
@@ -229,8 +231,16 @@ struct ContentView: View {
             } //: Group
             
             Group {
-                if !vo2MaxValues.isEmpty && vo2MaxValues[0] > 0 {
-                    Text("Cardiofitness: \(String(vo2MaxValues.last ?? 0))").font(.system(size: 12))
+                VStack(spacing: 0) {
+                    if !vo2MaxValue.isEmpty && vo2MaxValue[0] > 0 {
+                        Text("Cardiofitness: \(String(vo2MaxValue.last ?? 0))").font(.system(size: 12)).foregroundStyle(.teal)
+                    }
+                    if !SDNNValue.isEmpty && SDNNValue != "" {
+                        Text("Stresslevel (today): \(SDNNValue)").font(.system(size: 12)).foregroundStyle(.teal)
+                    }
+                    if !rMSSDValue.isEmpty && rMSSDValue != "" {
+                        Text("Stresslevel (now): \(rMSSDValue)").font(.system(size: 12)).foregroundStyle(.teal)
+                    }
                 }
                 if physical >= -0.05 && physical <= 0.05 || emotional >= -0.05 && emotional <= 0.05 || mental >= -0.05 && mental <= 0.05 {
                     Text("Advise ⚠️").font(.system(size: 24)).foregroundStyle(.teal)
@@ -269,10 +279,12 @@ struct ContentView: View {
     // Retrieve HRV SDNN data from Apple health
     func getHRVdata() {
         let healthStore = HKHealthStore()
-        
+        var stresslevel: Int = 0
+        var stresslevel_now: Int = 0
         // Create instance of HKQuantityType for heart rate variability SDNN
         let sdnnType: Set = [
             HKQuantityType.quantityType(forIdentifier: .heartRateVariabilitySDNN)!,
+            HKQuantityType.quantityType(forIdentifier: .heartRate)!,
         ]
 
         print("Requesting authorization...")
@@ -307,6 +319,21 @@ struct ContentView: View {
                         let date = result.startDate
                         let value = result.quantity.doubleValue(for: HKUnit(from: "ms"))
                         print("\(date),\(value)")
+                        stresslevel = Int(value)
+                    }
+                    stresslevel_now = stresslevel
+                    DispatchQueue.main.async {
+                        if stresslevel > 50 {
+                            self.SDNNValue = "Low"
+                            self.rMSSDValue = "Low"
+                        } else
+                            if stresslevel > 25 {
+                            self.SDNNValue = "Medium"
+                            self.rMSSDValue = "Medium"
+                        } else {
+                            self.SDNNValue = "High"
+                            self.rMSSDValue = "High"
+                        }
                     }
                 }
                 
@@ -356,7 +383,7 @@ struct ContentView: View {
                     
                     let vo2MaxValues = samples.map { $0.quantity.doubleValue(for: HKUnit(from: "mL/min·kg")) }
                     DispatchQueue.main.async {
-                        self.vo2MaxValues = vo2MaxValues
+                        self.vo2MaxValue = vo2MaxValues
                     }
                 }
                 print("Executing query...")
