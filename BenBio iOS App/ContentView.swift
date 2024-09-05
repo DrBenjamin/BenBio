@@ -6,7 +6,6 @@
 //
 // Imports
 import SwiftUI
-import HealthKit
 
 // Set variables
 nonisolated(unsafe) var birthday: String? = defaults.string(forKey: "birthday")
@@ -26,9 +25,9 @@ struct ContentView: View {
         return calendar.dateComponents([.day, .month, .year], from: Date())
     }()
     @State private var selectedDate: Date
-    @State private var vo2MaxValue: [Double] = []
-    @State private var SDNNValue: String = ""
-    @State private var rMSSDValue: String = ""
+    @State var vo2MaxValue: Double = defaults.double(forKey: "vo2MaxValue")
+    @State var SDNNValue: String = defaults.string(forKey: "SDNNValue") ?? ""
+    @State var rMSSDValue: String = defaults.string(forKey: "rMSSDValue") ?? ""
     var selectedDateProxy: Binding<Date> {
         Binding<Date>(
             get: {
@@ -232,16 +231,10 @@ struct ContentView: View {
             
             Group {
                 VStack(spacing: 0) {
-                    if !vo2MaxValue.isEmpty && vo2MaxValue[0] > 0 {
-                        Text("Cardiofitness: \(String(vo2MaxValue.last ?? 0))").font(.system(size: 14)).foregroundStyle(.teal)
-                    }
-                    if !SDNNValue.isEmpty && SDNNValue != "" {
-                        Text("Stresslevel (today): \(SDNNValue)").font(.system(size: 14)).foregroundStyle(.teal)
-                    }
-                    if !rMSSDValue.isEmpty && rMSSDValue != "" {
-                        Text("Stresslevel (now): \(rMSSDValue)").font(.system(size: 14)).foregroundStyle(.teal)
-                    }
-                }
+                    Text("Cardiofitness: \(String(vo2MaxValue))").font(.system(size: 14)).foregroundStyle(.teal)
+                    Text("Stresslevel (today): \(SDNNValue)").font(.system(size: 14)).foregroundStyle(.teal)
+                    Text("Stresslevel (now): \(rMSSDValue)").font(.system(size: 14)).foregroundStyle(.teal)
+                } //:VStack
                 if physical >= -0.05 && physical <= 0.05 || emotional >= -0.05 && emotional <= 0.05 || mental >= -0.05 && mental <= 0.05 {
                     Text("Advise ⚠️").font(.system(size: 24)).foregroundStyle(.teal)
                 } else {
@@ -272,130 +265,10 @@ struct ContentView: View {
         physical_1 = defaults.float(forKey: "physical_1")
         emotional_1 = defaults.float(forKey: "emotional_1")
         mental_1 = defaults.float(forKey: "mental_1")
+        vo2MaxValue = defaults.double(forKey: "vo2MaxValue")
+        SDNNValue = defaults.string(forKey: "SDNNValue") ?? ""
+        rMSSDValue = defaults.string(forKey: "rMSSDValue") ?? ""
     } //: refreshView
-    
-    // Retrieve HRV SDNN data from Apple health
-    func getHRVdata() {
-        let healthStore = HKHealthStore()
-        var stresslevel: Int = 0
-        var stresslevel_now: Int = 0
-        // Create instance of HKQuantityType for heart rate variability SDNN
-        let sdnnType: Set = [
-            HKQuantityType.quantityType(forIdentifier: .heartRateVariabilitySDNN)!,
-            HKQuantityType.quantityType(forIdentifier: .heartRate)!,
-        ]
-
-        print("Requesting authorization...")
-        healthStore.requestAuthorization(toShare: nil, read: sdnnType) { success, error in
-            if let error = error {
-                print("Authorization request failed: \(error.localizedDescription)")
-                return
-            }
-            if success {
-                print("Authorization granted")
-                
-                guard let type = HKQuantityType.quantityType(forIdentifier: .heartRateVariabilitySDNN) else {
-                    print("Failed to create quantity type")
-                    return
-                }
-                
-                let predicate = HKQuery.predicateForSamples(withStart: Date.distantPast, end: Date(), options: .strictStartDate)
-                let query = HKSampleQuery(sampleType: type, predicate: predicate, limit: HKObjectQueryNoLimit, sortDescriptors: nil) { (query, results, error)
-                    in
-                    if let error = error {
-                        print("Query Error: \(error.localizedDescription)")
-                        return
-                    }
-                    
-                    guard let results = results as? [HKQuantitySample] else {
-                        print("Fehler beim Abrufen der Daten: \(String(describing: error))")
-                        return
-                    }
-                    
-                    for result in results {
-                        //print("Found sample: \(result)")
-                        let date = result.startDate
-                        let value = result.quantity.doubleValue(for: HKUnit(from: "ms"))
-                        print("\(date),\(value)")
-                        stresslevel = Int(value)
-                    }
-                    stresslevel_now = stresslevel
-                    DispatchQueue.main.async {
-                        if stresslevel > 50 {
-                            self.SDNNValue = "Low"
-                        } else
-                            if stresslevel > 25 {
-                                self.SDNNValue = "Medium"
-                        } else {
-                            self.SDNNValue = "High"
-                        }
-                        if stresslevel_now > 50 {
-                            self.rMSSDValue = "Low"
-                        } else
-                            if stresslevel_now > 25 {
-                                self.rMSSDValue = "Medium"
-                            } else {
-                                self.rMSSDValue = "High"
-                            }
-                    }
-                }
-                
-                print("Executing query...")
-                healthStore.execute(query)
-            } else {
-                print("Authorization denied")
-            }
-        }//: healthStore
-    } //: getHRVdata
-    
-    // Retrieve Cardiofitness value from Apple health
-    func getCardiofitness() {
-        let healthStore = HKHealthStore()
-        
-        // Create instance of HKQuantityType for vo2Max
-        let allTypes: Set = [
-            HKQuantityType.quantityType(forIdentifier: .vo2Max)!,
-        ]
-        
-        print("Requesting authorization...")
-        healthStore.requestAuthorization(toShare: nil, read: allTypes) { success, error in
-            if let error = error {
-                print("Authorization request failed: \(error.localizedDescription)")
-                return
-            }
-            if success {
-                print("Authorization granted")
-                
-                guard let type = HKQuantityType.quantityType(forIdentifier: .vo2Max) else {
-                    print("Failed to create quantity type")
-                    return
-                }
-                
-                let predicate = HKQuery.predicateForSamples(withStart: Date.distantPast, end: Date(), options: .strictStartDate)
-                let query = HKSampleQuery(sampleType: type, predicate: predicate, limit: HKObjectQueryNoLimit, sortDescriptors: nil) { (_, samples, error)
-                    in
-                    if let error = error {
-                        print("Query Error: \(error.localizedDescription)")
-                        return
-                    }
-                    
-                    guard let samples = samples as? [HKQuantitySample] else {
-                        print("No samples found")
-                        return
-                    }
-                    
-                    let vo2MaxValues = samples.map { $0.quantity.doubleValue(for: HKUnit(from: "mL/min·kg")) }
-                    DispatchQueue.main.async {
-                        self.vo2MaxValue = vo2MaxValues
-                    }
-                }
-                print("Executing query...")
-                healthStore.execute(query)
-            } else {
-                print("Authorization denied")
-            }
-        }//: healthStore
-    }//: getCardiofitness
 } //: ContentView
 
 struct ContentView_Previews: PreviewProvider {

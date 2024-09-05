@@ -16,11 +16,18 @@ struct ContentView: View {
     @State var emotional_1: Float = defaults.float(forKey: "emotional_1")
     @State var mental_1: Float = defaults.float(forKey: "mental_1")
     @Environment(\.scenePhase) var scenePhase
-    
+    @State private var calendarDate: DateComponents = {
+        var calendar = Calendar.current
+        return calendar.dateComponents([.day, .month, .year], from: Date())
+    }()
     init() {
         print("App Start")
+        birthday = defaults.string(forKey: "birthday")
+        if birthday == nil {
+            birthday = "02/07/1979"
+            defaults.set(birthday, forKey: "birthday")
+        }
         calcRhythm(birthday: DateFormat().date(from: birthday ?? "02/07/1979"))
-        refreshView()
     } //: init
     
     var body: some View {
@@ -145,6 +152,9 @@ struct ContentView: View {
             } //: VStack
             .navigationTitle("Ben Bio Watch")
             .padding()
+            .onAppear {
+                refreshView()
+            }
         } //: NavigationView
     } //: View
     

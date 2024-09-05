@@ -25,6 +25,9 @@ struct ContentView: View {
         return calendar.dateComponents([.day, .month, .year], from: Date())
     }()
     @State private var selectedDate: Date
+    @State var vo2MaxValue: Double = defaults.double(forKey: "vo2MaxValue")
+    @State var SDNNValue: String = defaults.string(forKey: "SDNNValue") ?? ""
+    @State var rMSSDValue: String = defaults.string(forKey: "rMSSDValue") ?? ""
     var selectedDateProxy: Binding<Date> {
         Binding<Date>(
             get: {
@@ -123,122 +126,133 @@ struct ContentView: View {
             .resizable()
             .aspectRatio(contentMode: .fill)
             .ignoresSafeArea()
-        Text("").font(.system(size: 22))
-        
-        DatePicker("Select your birthday", selection: selectedDateProxy, displayedComponents: .date)
-        
-        Group {
-            if physical < -0.05 {
-                if physical > physical_1 {
-                    Text("💪 \(String(format: "%.0f", physical * 100))%  ⬆️").font(.system(size: 30)).foregroundStyle(.orange)
-                } else {
-                    Text("💪 \(String(format: "%.0f", physical * 100))%  ⬇️").font(.system(size: 30)).foregroundStyle(.orange)
-                }
-            }
-            if physical >= -0.05 && physical <= 0.05 {
-                if physical < 0 {
+        VStack {
+            DatePicker("Select your birthday", selection: selectedDateProxy, displayedComponents: .date)
+            Spacer()
+            
+            Group {
+                if physical < -0.05 {
                     if physical > physical_1 {
-                        Text("💪 \(String(format: "%.0f", physical * 100))%  ⬆️").font(.system(size: 30)).foregroundStyle(.red)
+                        Text("💪 \(String(format: "%.0f", physical * 100))%  ⬆️").font(.system(size: 30)).foregroundStyle(.orange)
                     } else {
-                        Text("💪 \(String(format: "%.0f", physical * 100))%  ⬇️").font(.system(size: 30)).foregroundStyle(.red)
+                        Text("💪 \(String(format: "%.0f", physical * 100))%  ⬇️").font(.system(size: 30)).foregroundStyle(.orange)
                     }
                 }
-                else {
+                if physical >= -0.05 && physical <= 0.05 {
+                    if physical < 0 {
+                        if physical > physical_1 {
+                            Text("💪 \(String(format: "%.0f", physical * 100))%  ⬆️").font(.system(size: 30)).foregroundStyle(.red)
+                        } else {
+                            Text("💪 \(String(format: "%.0f", physical * 100))%  ⬇️").font(.system(size: 30)).foregroundStyle(.red)
+                        }
+                    }
+                    else {
+                        if physical > physical_1 {
+                            Text("💪 +\(String(format: "%.0f", physical * 100))%  ⬆️").font(.system(size: 30)).foregroundStyle(.red)
+                        } else {
+                            Text("💪 +\(String(format: "%.0f", physical * 100))%  ⬇️").font(.system(size: 30)).foregroundStyle(.red)
+                        }
+                    }
+                }
+                if physical > 0.05 {
                     if physical > physical_1 {
-                        Text("💪 +\(String(format: "%.0f", physical * 100))%  ⬆️").font(.system(size: 30)).foregroundStyle(.red)
+                        Text("💪 +\(String(format: "%.0f", physical * 100))%  ⬆️").font(.system(size: 30)).foregroundStyle(.green)
                     } else {
-                        Text("💪 +\(String(format: "%.0f", physical * 100))%  ⬇️").font(.system(size: 30)).foregroundStyle(.red)
+                        Text("💪 +\(String(format: "%.0f", physical * 100))%  ⬇️").font(.system(size: 30)).foregroundStyle(.green)
                     }
                 }
-            }
-            if physical > 0.05 {
-                if physical > physical_1 {
-                    Text("💪 +\(String(format: "%.0f", physical * 100))%  ⬆️").font(.system(size: 30)).foregroundStyle(.green)
-                } else {
-                    Text("💪 +\(String(format: "%.0f", physical * 100))%  ⬇️").font(.system(size: 30)).foregroundStyle(.green)
-                }
-            }
-        } //: Group
-        Group {
-            if emotional < -0.05 {
-                if emotional > emotional_1 {
-                    Text("🧡 \(String(format: "%.0f", emotional * 100))%  ⬆️").font(.system(size: 30)).foregroundStyle(.orange)
-                } else {
-                    Text("🧡 \(String(format: "%.0f", emotional * 100))%  ⬇️").font(.system(size: 30)).foregroundStyle(.orange)
-                }
-            }
-            if emotional >= -0.05 && emotional <= 0.05 {
-                if emotional < 0 {
+            } //: Group
+            Group {
+                if emotional < -0.05 {
                     if emotional > emotional_1 {
-                        Text("🧡 \(String(format: "%.0f", emotional * 100))%  ⬆️").font(.system(size: 30)).foregroundStyle(.red)
+                        Text("🧡 \(String(format: "%.0f", emotional * 100))%  ⬆️").font(.system(size: 30)).foregroundStyle(.orange)
                     } else {
-                        Text("🧡 \(String(format: "%.0f", emotional * 100))%  ⬇️").font(.system(size: 30)).foregroundStyle(.red)
+                        Text("🧡 \(String(format: "%.0f", emotional * 100))%  ⬇️").font(.system(size: 30)).foregroundStyle(.orange)
                     }
                 }
-                else {
+                if emotional >= -0.05 && emotional <= 0.05 {
+                    if emotional < 0 {
+                        if emotional > emotional_1 {
+                            Text("🧡 \(String(format: "%.0f", emotional * 100))%  ⬆️").font(.system(size: 30)).foregroundStyle(.red)
+                        } else {
+                            Text("🧡 \(String(format: "%.0f", emotional * 100))%  ⬇️").font(.system(size: 30)).foregroundStyle(.red)
+                        }
+                    }
+                    else {
+                        if emotional > emotional_1 {
+                            Text("🧡 +\(String(format: "%.0f", emotional * 100))%  ⬆️").font(.system(size: 30)).foregroundStyle(.red)
+                        } else {
+                            Text("🧡 +\(String(format: "%.0f", emotional * 100))%  ⬇️").font(.system(size: 30)).foregroundStyle(.red)
+                        }
+                    }
+                }
+                if emotional > 0.05 {
                     if emotional > emotional_1 {
-                        Text("🧡 +\(String(format: "%.0f", emotional * 100))%  ⬆️").font(.system(size: 30)).foregroundStyle(.red)
+                        Text("🧡 +\(String(format: "%.0f", emotional * 100))%  ⬆️").font(.system(size: 30)).foregroundStyle(.green)
                     } else {
-                        Text("🧡 +\(String(format: "%.0f", emotional * 100))%  ⬇️").font(.system(size: 30)).foregroundStyle(.red)
+                        Text("🧡 +\(String(format: "%.0f", emotional * 100))%  ⬇️").font(.system(size: 30)).foregroundStyle(.green)
                     }
                 }
-            }
-            if emotional > 0.05 {
-                if emotional > emotional_1 {
-                    Text("🧡 +\(String(format: "%.0f", emotional * 100))%  ⬆️").font(.system(size: 30)).foregroundStyle(.green)
-                } else {
-                    Text("🧡 +\(String(format: "%.0f", emotional * 100))%  ⬇️").font(.system(size: 30)).foregroundStyle(.green)
-                }
-            }
-        } //: Group
-        Group {
-            if mental < -0.05 {
-                if mental > mental_1 {
-                    Text("🧠 \(String(format: "%.0f", mental * 100))%  ⬆️").font(.system(size: 30)).foregroundStyle(.orange)
-                } else {
-                    Text("🧠 \(String(format: "%.0f", mental * 100))%  ⬇️").font(.system(size: 30)).foregroundStyle(.orange)
-                }
-            }
-            if mental >= -0.05 && mental <= 0.05 {
-                if mental < 0 {
+            } //: Group
+            Group {
+                if mental < -0.05 {
                     if mental > mental_1 {
-                        Text("🧠 \(String(format: "%.0f", mental * 100))%  ⬆️").font(.system(size: 30)).foregroundStyle(.red)
+                        Text("🧠 \(String(format: "%.0f", mental * 100))%  ⬆️").font(.system(size: 30)).foregroundStyle(.orange)
                     } else {
-                        Text("🧠 \(String(format: "%.0f", mental * 100))%  ⬇️").font(.system(size: 30)).foregroundStyle(.red)
+                        Text("🧠 \(String(format: "%.0f", mental * 100))%  ⬇️").font(.system(size: 30)).foregroundStyle(.orange)
                     }
                 }
-                else {
+                if mental >= -0.05 && mental <= 0.05 {
+                    if mental < 0 {
+                        if mental > mental_1 {
+                            Text("🧠 \(String(format: "%.0f", mental * 100))%  ⬆️").font(.system(size: 30)).foregroundStyle(.red)
+                        } else {
+                            Text("🧠 \(String(format: "%.0f", mental * 100))%  ⬇️").font(.system(size: 30)).foregroundStyle(.red)
+                        }
+                    }
+                    else {
+                        if mental > mental_1 {
+                            Text("🧠 +\(String(format: "%.0f", mental * 100))%  ⬆️").font(.system(size: 30)).foregroundStyle(.red)
+                        } else {
+                            Text("🧠 +\(String(format: "%.0f", mental * 100))%  ⬇️").font(.system(size: 30)).foregroundStyle(.red)
+                        }
+                    }
+                }
+                if mental > 0.05 {
                     if mental > mental_1 {
-                        Text("🧠 +\(String(format: "%.0f", mental * 100))%  ⬆️").font(.system(size: 30)).foregroundStyle(.red)
+                        Text("🧠 +\(String(format: "%.0f", mental * 100))%  ⬆️").font(.system(size: 30)).foregroundStyle(.green)
                     } else {
-                        Text("🧠 +\(String(format: "%.0f", mental * 100))%  ⬇️").font(.system(size: 30)).foregroundStyle(.red)
+                        Text("🧠 +\(String(format: "%.0f", mental * 100))%  ⬇️").font(.system(size: 30)).foregroundStyle(.green)
                     }
                 }
-            }
-            if mental > 0.05 {
-                if mental > mental_1 {
-                    Text("🧠 +\(String(format: "%.0f", mental * 100))%  ⬆️").font(.system(size: 30)).foregroundStyle(.green)
+            } //: Group
+            Group {
+                VStack(spacing: 0) {
+                    Text("Cardiofitness: \(String(vo2MaxValue))").font(.system(size: 14)).foregroundStyle(.teal)
+                    Text("Stresslevel (today): \(SDNNValue)").font(.system(size: 14)).foregroundStyle(.teal)
+                    Text("Stresslevel (now): \(rMSSDValue)").font(.system(size: 14)).foregroundStyle(.teal)
+                }
+                if physical >= -0.05 && physical <= 0.05 || emotional >= -0.05 && emotional <= 0.05 || mental >= -0.05 && mental <= 0.05 {
+                    Text("Advise ⚠️").font(.system(size: 24)).foregroundStyle(.teal)
                 } else {
-                    Text("🧠 +\(String(format: "%.0f", mental * 100))%  ⬇️").font(.system(size: 30)).foregroundStyle(.green)
+                    if physical + emotional + mental > 1 {
+                        Text("Advise 🥳").font(.system(size: 24)).foregroundStyle(.teal)
+                    }
+                    if physical + emotional + mental >= -1 && physical + emotional + mental <= 1 {
+                        Text("Advise 😃").font(.system(size: 24)).foregroundStyle(.teal)
+                    }
+                    if physical + emotional + mental < -1 {
+                        Text("Advise 😴").font(.system(size: 24)).foregroundStyle(.teal)
+                    }
                 }
-            }
-        } //: Group
-        Group {
-            if physical >= -0.05 && physical <= 0.05 || emotional >= -0.05 && emotional <= 0.05 || mental >= -0.05 && mental <= 0.05 {
-                Text("Advise ⚠️").font(.system(size: 24)).foregroundStyle(.teal)
-            } else {
-                if physical + emotional + mental > 1 {
-                    Text("Advise 🥳").font(.system(size: 24)).foregroundStyle(.teal)
-                }
-                if physical + emotional + mental >= -1 && physical + emotional + mental <= 1 {
-                    Text("Advise 😃").font(.system(size: 24)).foregroundStyle(.teal)
-                }
-                if physical + emotional + mental < -1 {
-                    Text("Advise 😴").font(.system(size: 24)).foregroundStyle(.teal)
-                }
-            }
-        } //: Group
-        .padding()
+            } //: Group
+            .padding()
+        } //:VStack
+        .onAppear {
+            refreshView()
+            getCardiofitness()
+            getHRVdata()
+        }
     } //: View
     
     func refreshView() {
@@ -248,13 +262,14 @@ struct ContentView: View {
         physical_1 = defaults.float(forKey: "physical_1")
         emotional_1 = defaults.float(forKey: "emotional_1")
         mental_1 = defaults.float(forKey: "mental_1")
+        vo2MaxValue = defaults.double(forKey: "vo2MaxValue")
+        SDNNValue = defaults.string(forKey: "SDNNValue") ?? ""
+        rMSSDValue = defaults.string(forKey: "rMSSDValue") ?? ""
     } //: refreshView
 } //: ContentView
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
-        
-        
     }
 }
