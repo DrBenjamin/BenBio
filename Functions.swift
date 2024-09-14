@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 import HealthKit
+import WidgetKit
 
 nonisolated(unsafe) let defaults = UserDefaults(suiteName: "group.BenBioWatch.Data")!
 
@@ -55,6 +56,7 @@ public func calcRhythm(birthday : Date?) {
                  String(format: "%.0f", sin(dpi * Float(delta) / 33) * 100),
                  forKey: "Biorhythm")
     defaults.synchronize()
+    WidgetCenter.shared.reloadAllTimelines()
 }
 
 // Retrieve HRV SDNN data from Apple health

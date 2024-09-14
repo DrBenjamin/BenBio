@@ -32,9 +32,6 @@ struct BenBio_Watch_WidgetEntryView : View {
                     .widgetLabel {
                         Text(biorthythm)
                     }
-                    .onAppear {
-                        updateValues()
-                    }
             }//:ZStack
             .onAppear {
                 updateValues()
@@ -45,6 +42,7 @@ struct BenBio_Watch_WidgetEntryView : View {
     }//:View
     func updateValues() {
         biorthythm = (defaults!.string(forKey: "Biorhythm") ?? "0 • 0 • 0")
+        print(biorthythm)
         stresslevel = (defaults!.string(forKey: "rMSSDValue") ?? "Low")
         print(stresslevel)
         if stresslevel == "High" {
@@ -69,8 +67,15 @@ struct Provider: TimelineProvider {
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<SimpleEntry>) -> ()) {
         let currentDate = Date()
+        let refreshDate = Calendar.current.date(byAdding: .minute, value: 15, to: currentDate)!
+
+        // Erstellen Sie einen Eintrag mit dem aktuellen Datum
         let entry = SimpleEntry(date: currentDate)
-        let timeline = Timeline(entries: [entry], policy: .atEnd)
+        
+        // Erstellen Sie eine Timeline mit dem Eintrag und einer Aktualisierungsrichtlinie
+        let timeline = Timeline(entries: [entry], policy: .after(refreshDate))
+        
+        // Übergeben Sie die Timeline an das Completion-Handler
         completion(timeline)
     }
 
