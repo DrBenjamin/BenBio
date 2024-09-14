@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 import HealthKit
 
-nonisolated(unsafe) let defaults = UserDefaults.standard
+nonisolated(unsafe) let defaults = UserDefaults(suiteName: "group.BenBioWatch.Data")!
 
 func dateWithoutTime(date: Date) -> Date {
     return Calendar.current.startOfDay(for: date)
@@ -48,6 +48,13 @@ public func calcRhythm(birthday : Date?) {
     defaults.set(sin(dpi * Float(delta_1) / 23), forKey: "physical_1")
     defaults.set(sin(dpi * Float(delta_1) / 28), forKey: "emotional_1")
     defaults.set(sin(dpi * Float(delta_1) / 33), forKey: "mental_1")
+    defaults.set(String(format: "%.0f", sin(dpi * Float(delta) / 23) * 100) +
+                 " • " +
+                 String(format: "%.0f", sin(dpi * Float(delta) / 28) * 100) +
+                 " • " +
+                 String(format: "%.0f", sin(dpi * Float(delta) / 33) * 100),
+                 forKey: "Biorhythm")
+    defaults.synchronize()
 }
 
 // Retrieve HRV SDNN data from Apple health
@@ -101,7 +108,7 @@ public func getHRVdata() {
                         defaults.set("Low", forKey: "SDNNValue")
                     } else
                         if stresslevel > 25 {
-                        defaults.set("Medium", forKey: "SDNNValue")
+                        defaults.set("Med.", forKey: "SDNNValue")
                     } else {
                         defaults.set("High", forKey: "SDNNValue")
                     }
@@ -109,7 +116,7 @@ public func getHRVdata() {
                         defaults.set("Low", forKey: "rMSSDValue")
                     } else
                         if stresslevel_now > 25 {
-                        defaults.set("Medium", forKey: "rMSSDValue")
+                        defaults.set("Med.", forKey: "rMSSDValue")
                         } else {
                             defaults.set("High", forKey: "rMSSDValue")
                         }

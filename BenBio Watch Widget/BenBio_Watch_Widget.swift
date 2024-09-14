@@ -8,7 +8,8 @@ import Foundation
 import WidgetKit
 import SwiftUI
 
-//nonisolated(unsafe) let defaults = UserDefaults.standard
+// Load User defaults from Apple Watch App
+nonisolated(unsafe) let defaults = UserDefaults(suiteName: "group.BenBioWatch.Data")
 
 struct Provider: AppIntentTimelineProvider {
     func placeholder(in context: Context) -> SimpleEntry {
@@ -35,7 +36,7 @@ struct Provider: AppIntentTimelineProvider {
 
     func recommendations() -> [AppIntentRecommendation<ConfigurationAppIntent>] {
         // Create an array with all the preconfigured widgets to show.
-        [AppIntentRecommendation(intent: ConfigurationAppIntent(), description: "Example Widget")]
+        [AppIntentRecommendation(intent: ConfigurationAppIntent(), description: "BenBioWatch Widget")]
     }
 
 //    func relevances() async -> WidgetRelevances<ConfigurationAppIntent> {
@@ -49,25 +50,39 @@ struct SimpleEntry: TimelineEntry {
 }
 
 struct BenBio_Watch_WidgetEntryView : View {
-    // Load User defaults from Apple Watch App
-    let defaults = UserDefaults(suiteName: "group.com.benbio.watch.widget")!
+    @State var biorthythm: String = (defaults!.string(forKey: "Biorhythm") ?? "0 • 0 • 0")
+    @State var stresslevel: String = (defaults!.string(forKey: "rMSSDValue") ?? "Med.")
+    @State var stress: Double = 0.3
     @Environment(\.widgetFamily) var widgetFamily
     var entry: Provider.Entry
     var body: some View {
-        @State var physical: Float = defaults.float(forKey: "physical")
-        @State var emotional: Float = defaults.float(forKey: "emotional")
-        @State var mental: Float = defaults.float(forKey: "mental")
         switch widgetFamily {
-                    case .accessoryCorner:
-                        // Show healthkit image
-                        Image(systemName: "heart.fill")
-                            .widgetLabel {
-                                Text(String(Int(physical)) + " • " + String(Int(emotional)) + " • " + String(Int(mental)))
-                            }
-                    default:
-                        Text("?")
+        case .accessoryCorner:
+            ZStack {
+                if stresslevel == "High" {
+                    // Error `Type '()' cannot confirm to 'View'
+                    stress = 1.0
+                } else {
+                    if stresslevel == "Med." {
+                        stress = 0.65
+                    }
                 }
-    }
+                Circle()
+                    .fill(LinearGradient(
+                        gradient: Gradient(
+                            colors: [Color.white.opacity(0.1),
+                                     Color.white.opacity(stress)]),
+                        startPoint: .top,
+                        endPoint: .bottom))
+                    .font(.largeTitle)
+                    .widgetLabel {
+                        Text(biorthythm)
+                    }
+            }//:ZStack
+            default:
+                Text("?")
+        }//:switch
+    }//:View
 }
 
 @main

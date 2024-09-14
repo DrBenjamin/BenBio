@@ -130,6 +130,7 @@
 		1CBC14CB2BC01E0E0088292E /* BenBio iOS AppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "BenBio iOS AppTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1CBC14D42BC01E610088292E /* RhythmsCalcTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RhythmsCalcTests.swift; sourceTree = "<group>"; };
 		1CBC14D62BC023C20088292E /* DateFormatterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatterTests.swift; sourceTree = "<group>"; };
+		B508A7CF2C95B56C00F47225 /* BenBio Watch WidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "BenBio Watch WidgetExtension.entitlements"; sourceTree = "<group>"; };
 		B52A787A2C5650AC00DF4F88 /* BenBio-iOS-App-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "BenBio-iOS-App-Info.plist"; sourceTree = SOURCE_ROOT; };
 		B5594A792BC199AE0000E46C /* BenBio iOS AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "BenBio iOS AppUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5594A7B2BC199AE0000E46C /* BenBio_iOS_AppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BenBio_iOS_AppUITests.swift; sourceTree = "<group>"; };
@@ -211,6 +212,7 @@
 		1C0538832B8AB7B0008B37ED = {
 			isa = PBXGroup;
 			children = (
+				B508A7CF2C95B56C00F47225 /* BenBio Watch WidgetExtension.entitlements */,
 				B575F2862BBADDDB004F6441 /* PrivacyInfo.xcprivacy */,
 				B5BD9B952BBA0CA900F71028 /* LICENSE */,
 				B5BD9B962BBA0CA900F71028 /* README.md */,
@@ -516,9 +518,9 @@
 				1C05388F2B8AB7B1008B37ED /* BenBio Watch App */,
 				1C0538AA2B8ABBCA008B37ED /* BenBio iOS App */,
 				1CAB91A42B8B24CB00010986 /* BenBio Mac App */,
+				B5C3F4502C9567AC002179F7 /* BenBio Watch WidgetExtension */,
 				1CBC14CA2BC01E0E0088292E /* BenBio iOS AppTests */,
 				B5594A782BC199AE0000E46C /* BenBio iOS AppUITests */,
-				B5C3F4502C9567AC002179F7 /* BenBio Watch WidgetExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -932,6 +934,7 @@
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_STRICT_CONCURRENCY = complete;
@@ -973,6 +976,7 @@
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_STRICT_CONCURRENCY = complete;
@@ -1135,6 +1139,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = "BenBio Watch WidgetExtension.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -1166,6 +1171,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = "BenBio Watch WidgetExtension.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
