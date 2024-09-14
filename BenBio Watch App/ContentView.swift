@@ -136,23 +136,30 @@ struct ContentView: View {
                     if newPhase == .active {
                         print("Active")
                         calcRhythm(birthday: DateFormat().date(from: birthday ?? "02/07/1979"))
+                        refreshView()
                     } else if newPhase == .inactive {
                         print("Inactive")
+                        calcRhythm(birthday: DateFormat().date(from: birthday ?? "02/07/1979"))
+                        refreshView()
                     } else if newPhase == .background {
                         print("Background")
+                        calcRhythm(birthday: DateFormat().date(from: birthday ?? "02/07/1979"))
+                        refreshView()
                     }
                 } //: onChange
                 
                 NavigationLink(destination: DatePickerView()) {
                     Text("Change birthday")
+                        .font(.headline)
                 } //: NavigationLink
                 .onAppear() {
-                    refreshView()
+                    calcRhythm(birthday: DateFormat().date(from: birthday ?? "02/07/1979"))
                 }
             } //: VStack
             .navigationTitle("Ben Bio Watch")
             .padding()
             .onAppear {
+                calcRhythm(birthday: DateFormat().date(from: birthday ?? "02/07/1979"))
                 refreshView()
             }
         } //: NavigationView

@@ -50,23 +50,15 @@ struct SimpleEntry: TimelineEntry {
 }
 
 struct BenBio_Watch_WidgetEntryView : View {
-    @State var biorthythm: String = (defaults!.string(forKey: "Biorhythm") ?? "0 • 0 • 0")
-    @State var stresslevel: String = (defaults!.string(forKey: "rMSSDValue") ?? "Med.")
-    @State var stress: Double = 0.3
-    @Environment(\.widgetFamily) var widgetFamily
     var entry: Provider.Entry
+    @State var stress: Double = 0.3
+    @State var biorthythm: String = (defaults!.string(forKey: "Biorhythm") ?? "0 • 0 • 0")
+    @State var stresslevel: String = (defaults!.string(forKey: "rMSSDValue") ?? "Low")
+    @Environment(\.widgetFamily) var widgetFamily
     var body: some View {
         switch widgetFamily {
         case .accessoryCorner:
             ZStack {
-                if stresslevel == "High" {
-                    // Error `Type '()' cannot confirm to 'View'
-                    stress = 1.0
-                } else {
-                    if stresslevel == "Med." {
-                        stress = 0.65
-                    }
-                }
                 Circle()
                     .fill(LinearGradient(
                         gradient: Gradient(
@@ -78,12 +70,30 @@ struct BenBio_Watch_WidgetEntryView : View {
                     .widgetLabel {
                         Text(biorthythm)
                     }
+                    .onAppear {
+                        updateValues()
+                    }
             }//:ZStack
+            .onAppear {
+                updateValues()
+            }
             default:
                 Text("?")
         }//:switch
     }//:View
-}
+    func updateValues() {
+        biorthythm = (defaults!.string(forKey: "Biorhythm") ?? "0 • 0 • 0")
+        stresslevel = (defaults!.string(forKey: "rMSSDValue") ?? "Low")
+        print(stresslevel)
+        if stresslevel == "High" {
+            stress = 1.0
+        } else if stresslevel == "Med." {
+            stress = 0.5
+        } else {
+            stress = 0.3
+        }
+    }
+}//:View
 
 @main
 struct BenBio_Watch_Widget: Widget {
