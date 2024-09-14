@@ -4,9 +4,11 @@
 //
 //  Created by Benjamin Groß on 14/9/24.
 //
-
+import Foundation
 import WidgetKit
 import SwiftUI
+
+//nonisolated(unsafe) let defaults = UserDefaults.standard
 
 struct Provider: AppIntentTimelineProvider {
     func placeholder(in context: Context) -> SimpleEntry {
@@ -47,25 +49,30 @@ struct SimpleEntry: TimelineEntry {
 }
 
 struct BenBio_Watch_WidgetEntryView : View {
+    // Load User defaults from Apple Watch App
+    let defaults = UserDefaults(suiteName: "group.com.benbio.watch.widget")!
+    @Environment(\.widgetFamily) var widgetFamily
     var entry: Provider.Entry
-
     var body: some View {
-        VStack {
-            HStack {
-                Text("Time:")
-                Text(entry.date, style: .time)
-            }
-        
-            Text("Favorite Emoji:")
-            Text(entry.configuration.favoriteEmoji)
-        }
+        @State var physical: Float = defaults.float(forKey: "physical")
+        @State var emotional: Float = defaults.float(forKey: "emotional")
+        @State var mental: Float = defaults.float(forKey: "mental")
+        switch widgetFamily {
+                    case .accessoryCorner:
+                        // Show healthkit image
+                        Image(systemName: "heart.fill")
+                            .widgetLabel {
+                                Text(String(Int(physical)) + " • " + String(Int(emotional)) + " • " + String(Int(mental)))
+                            }
+                    default:
+                        Text("?")
+                }
     }
 }
 
 @main
 struct BenBio_Watch_Widget: Widget {
     let kind: String = "BenBio_Watch_Widget"
-
     var body: some WidgetConfiguration {
         AppIntentConfiguration(kind: kind, intent: ConfigurationAppIntent.self, provider: Provider()) { entry in
             BenBio_Watch_WidgetEntryView(entry: entry)
