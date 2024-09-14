@@ -804,7 +804,7 @@
 				CODE_SIGN_ENTITLEMENTS = "BenBio Watch App/BenBio Watch App.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 9;
+				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_ASSET_PATHS = "\"BenBio Watch App/Preview Content\"";
 				DEVELOPMENT_TEAM = 728QJVXW3S;
 				ENABLE_PREVIEWS = YES;
@@ -816,8 +816,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.1.1;
-				PRODUCT_BUNDLE_IDENTIFIER = org.benbox.BenBioWatch.Watch.Watch;
+				MARKETING_VERSION = 0.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.benbox.BenBioWatch.Watch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = watchos;
@@ -838,7 +838,7 @@
 				CODE_SIGN_ENTITLEMENTS = "BenBio Watch App/BenBio Watch App.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 9;
+				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_ASSET_PATHS = "\"BenBio Watch App/Preview Content\"";
 				DEVELOPMENT_TEAM = 728QJVXW3S;
 				ENABLE_PREVIEWS = YES;
@@ -850,8 +850,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.1.1;
-				PRODUCT_BUNDLE_IDENTIFIER = org.benbox.BenBioWatch.Watch.Watch;
+				MARKETING_VERSION = 0.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.benbox.BenBioWatch.Watch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = watchos;
@@ -908,7 +908,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "BenBio iOS App/BenBio iOS App.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_ASSET_PATHS = "\"BenBio iOS App/Preview Content\"";
 				DEVELOPMENT_TEAM = 728QJVXW3S;
 				ENABLE_PREVIEWS = YES;
@@ -950,7 +950,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "BenBio iOS App/BenBio iOS App.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_ASSET_PATHS = "\"BenBio iOS App/Preview Content\"";
 				DEVELOPMENT_TEAM = 728QJVXW3S;
 				ENABLE_PREVIEWS = YES;
@@ -994,7 +994,7 @@
 				CODE_SIGN_ENTITLEMENTS = "BenBio Mac App/BenBio_Mac_App.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 10;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"BenBio Mac App/Preview Content\"";
 				DEVELOPMENT_TEAM = 728QJVXW3S;
@@ -1010,7 +1010,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 15.0;
 				MARKETING_VERSION = 0.1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = org.benbox.BenBioWatch.Watch;
+				PRODUCT_BUNDLE_IDENTIFIER = org.benbox.BenBioWatch.MacOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1027,7 +1027,7 @@
 				CODE_SIGN_ENTITLEMENTS = "BenBio Mac App/BenBio_Mac_App.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 10;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"BenBio Mac App/Preview Content\"";
 				DEVELOPMENT_TEAM = 728QJVXW3S;
@@ -1043,7 +1043,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 15.0;
 				MARKETING_VERSION = 0.1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = org.benbox.BenBioWatch.Watch;
+				PRODUCT_BUNDLE_IDENTIFIER = org.benbox.BenBioWatch.MacOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1142,11 +1142,11 @@
 				CODE_SIGN_ENTITLEMENTS = "BenBio Watch WidgetExtension.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_TEAM = 728QJVXW3S;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "BenBio Watch Widget/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "BenBio Watch Widget";
+				INFOPLIST_KEY_CFBundleDisplayName = "BenBioWatch Widget";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1154,8 +1154,8 @@
 					"@executable_path/../../Frameworks",
 					"@executable_path/../../../../Frameworks",
 				);
-				MARKETING_VERSION = 0.1.1;
-				PRODUCT_BUNDLE_IDENTIFIER = "org.benbox.BenBioWatch.Watch.Watch.BenBio-Watch-Widget";
+				MARKETING_VERSION = 0.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.benbox.BenBioWatch.Watch.Widget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -1174,11 +1174,11 @@
 				CODE_SIGN_ENTITLEMENTS = "BenBio Watch WidgetExtension.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_TEAM = 728QJVXW3S;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "BenBio Watch Widget/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "BenBio Watch Widget";
+				INFOPLIST_KEY_CFBundleDisplayName = "BenBioWatch Widget";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1186,8 +1186,8 @@
 					"@executable_path/../../Frameworks",
 					"@executable_path/../../../../Frameworks",
 				);
-				MARKETING_VERSION = 0.1.1;
-				PRODUCT_BUNDLE_IDENTIFIER = "org.benbox.BenBioWatch.Watch.Watch.BenBio-Watch-Widget";
+				MARKETING_VERSION = 0.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.benbox.BenBioWatch.Watch.Widget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;

@@ -28,6 +28,8 @@ struct ContentView: View {
             defaults.set(birthday, forKey: "birthday")
         }
         calcRhythm(birthday: DateFormat().date(from: birthday ?? "02/07/1979"))
+        //getCardiofitness()
+        getHRVdata()
     } //: init
     
     var body: some View {

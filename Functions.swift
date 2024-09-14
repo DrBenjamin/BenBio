@@ -67,7 +67,6 @@ public func getHRVdata() {
     // Create instance of HKQuantityType for heart rate variability SDNN
     let sdnnType: Set = [
         HKQuantityType.quantityType(forIdentifier: .heartRateVariabilitySDNN)!,
-        HKQuantityType.quantityType(forIdentifier: .heartRate)!,
     ]
 
     print("Requesting authorization...")

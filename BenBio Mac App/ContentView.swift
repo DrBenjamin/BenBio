@@ -26,8 +26,8 @@ struct ContentView: View {
     }()
     @State private var selectedDate: Date
     @State var vo2MaxValue: Double = defaults.double(forKey: "vo2MaxValue")
-    @State var SDNNValue: String = defaults.string(forKey: "SDNNValue") ?? ""
-    @State var rMSSDValue: String = defaults.string(forKey: "rMSSDValue") ?? ""
+    @State var SDNNValue: String = defaults.string(forKey: "SDNNValue") ?? "Low"
+    @State var rMSSDValue: String = defaults.string(forKey: "rMSSDValue") ?? "Low"
     var selectedDateProxy: Binding<Date> {
         Binding<Date>(
             get: {
@@ -250,8 +250,6 @@ struct ContentView: View {
         } //:VStack
         .onAppear {
             refreshView()
-            getCardiofitness()
-            getHRVdata()
         }
     } //: View
     
@@ -263,8 +261,8 @@ struct ContentView: View {
         emotional_1 = defaults.float(forKey: "emotional_1")
         mental_1 = defaults.float(forKey: "mental_1")
         vo2MaxValue = defaults.double(forKey: "vo2MaxValue")
-        SDNNValue = defaults.string(forKey: "SDNNValue") ?? ""
-        rMSSDValue = defaults.string(forKey: "rMSSDValue") ?? ""
+        SDNNValue = defaults.string(forKey: "SDNNValue") ?? "Low"
+        rMSSDValue = defaults.string(forKey: "rMSSDValue") ?? "Low"
     } //: refreshView
 } //: ContentView
 
