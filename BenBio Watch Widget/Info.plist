@@ -7,5 +7,10 @@
 		<key>NSExtensionPointIdentifier</key>
 		<string>com.apple.widgetkit-extension</string>
 	</dict>
+
+	<key>NSHealthShareUsageDescription</key>
+	<string>This widget reads VO2Max and heart rate variability (HRV) to provide cardio fitness (VO2) and HRV insights.</string>
+	<key>NSHealthUpdateUsageDescription</key>
+	<string>This widget may write Health data to HealthKit to update tracking used by the app.</string>
 </dict>
 </plist>

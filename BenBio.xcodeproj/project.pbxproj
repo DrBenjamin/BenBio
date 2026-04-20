@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 70;
+	objectVersion = 90;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -75,35 +75,29 @@
 /* Begin PBXCopyFilesBuildPhase section */
 		1C0538A32B8AB7B2008B37ED /* Embed Watch Content */ = {
 			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
 			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
-			dstSubfolderSpec = 16;
+			dstSubfolder = Product;
 			files = (
 				1C0538912B8AB7B1008B37ED /* BenBio Watch App.app in Embed Watch Content */,
 			);
 			name = "Embed Watch Content";
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		B5C3F4152C955F80002179F7 /* Embed Foundation Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
 			dstPath = "";
-			dstSubfolderSpec = 13;
+			dstSubfolder = PlugIns;
 			files = (
 			);
 			name = "Embed Foundation Extensions";
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		B5C3F4302C95659B002179F7 /* Embed Foundation Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
 			dstPath = "";
-			dstSubfolderSpec = 13;
+			dstSubfolder = PlugIns;
 			files = (
 				B5C3F45E2C9567AD002179F7 /* BenBio Watch WidgetExtension.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
@@ -148,7 +142,7 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		B5C3F45F2C9567AD002179F7 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+		B5C3F45F2C9567AD002179F7 /* Exceptions for "BenBio Watch Widget" folder in "BenBio Watch WidgetExtension" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
@@ -158,53 +152,48 @@
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		B5C3F4542C9567AC002179F7 /* BenBio Watch Widget */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (B5C3F45F2C9567AD002179F7 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = "BenBio Watch Widget"; sourceTree = "<group>"; };
+		B5C3F4542C9567AC002179F7 /* BenBio Watch Widget */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				B5C3F45F2C9567AD002179F7 /* Exceptions for "BenBio Watch Widget" folder in "BenBio Watch WidgetExtension" target */,
+			);
+			path = "BenBio Watch Widget";
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		1C05388D2B8AB7B1008B37ED /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		1C0538A82B8ABBCA008B37ED /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		1CAB91A22B8B24CB00010986 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		1CBC14C82BC01E0E0088292E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		B5594A762BC199AE0000E46C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		B5C3F44E2C9567AC002179F7 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 				B5C3F4532C9567AC002179F7 /* SwiftUI.framework in Frameworks */,
 				B5C3F4522C9567AC002179F7 /* WidgetKit.framework in Frameworks */,
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
@@ -383,8 +372,6 @@
 			);
 			buildRules = (
 			);
-			dependencies = (
-			);
 			name = "BenBio iOS App";
 			productName = "BenBio iOS App";
 			productReference = 1C0538AB2B8ABBCA008B37ED /* BenBio iOS App.app */;
@@ -399,8 +386,6 @@
 				1CAB91A32B8B24CB00010986 /* Resources */,
 			);
 			buildRules = (
-			);
-			dependencies = (
 			);
 			name = "BenBio Mac App";
 			productName = "BenBio Mac App";
@@ -453,14 +438,10 @@
 			);
 			buildRules = (
 			);
-			dependencies = (
-			);
 			fileSystemSynchronizedGroups = (
 				B5C3F4542C9567AC002179F7 /* BenBio Watch Widget */,
 			);
 			name = "BenBio Watch WidgetExtension";
-			packageProductDependencies = (
-			);
 			productName = "BenBio Watch WidgetExtension";
 			productReference = B5C3F4512C9567AC002179F7 /* BenBio Watch WidgetExtension.appex */;
 			productType = "com.apple.product-type.app-extension";
@@ -473,7 +454,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1600;
-				LastUpgradeCheck = 1600;
+				LastUpgradeCheck = 2610;
 				TargetAttributes = {
 					1C0538892B8AB7B1008B37ED = {
 						CreatedOnToolsVersion = 15.2;
@@ -502,7 +483,6 @@
 				};
 			};
 			buildConfigurationList = 1C0538872B8AB7B0008B37ED /* Build configuration list for PBXProject "BenBio" */;
-			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -510,6 +490,7 @@
 				Base,
 			);
 			mainGroup = 1C0538832B8AB7B0008B37ED;
+			preferredProjectObjectVersion = 90;
 			productRefGroup = 1C05388B2B8AB7B1008B37ED /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -528,125 +509,99 @@
 /* Begin PBXResourcesBuildPhase section */
 		1C0538882B8AB7B1008B37ED /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 				B575F2872BBADDDB004F6441 /* PrivacyInfo.xcprivacy in Resources */,
 				B5BD9B982BBA0CA900F71028 /* README.md in Resources */,
 				B5BD9B972BBA0CA900F71028 /* LICENSE in Resources */,
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		1C05388E2B8AB7B1008B37ED /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 				B575F2882BBADDDB004F6441 /* PrivacyInfo.xcprivacy in Resources */,
 				1C05389D2B8AB7B2008B37ED /* Preview Assets.xcassets in Resources */,
 				1C05389A2B8AB7B2008B37ED /* Assets.xcassets in Resources */,
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		1C0538A92B8ABBCA008B37ED /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 				B575F2892BBADDDB004F6441 /* PrivacyInfo.xcprivacy in Resources */,
 				1C0538B52B8ABBCB008B37ED /* Preview Assets.xcassets in Resources */,
 				1C0538B22B8ABBCB008B37ED /* Assets.xcassets in Resources */,
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		1CAB91A32B8B24CB00010986 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 				B575F28A2BBADDDB004F6441 /* PrivacyInfo.xcprivacy in Resources */,
 				1CAB91AF2B8B24CD00010986 /* Preview Assets.xcassets in Resources */,
 				1CAB91AC2B8B24CD00010986 /* Assets.xcassets in Resources */,
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		1CBC14C92BC01E0E0088292E /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 				B5C7E4072BC15E0E0009AA0E /* .gitignore in Resources */,
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		B5594A772BC199AE0000E46C /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		B5C3F44F2C9567AC002179F7 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		1C05388C2B8AB7B1008B37ED /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 				1C0538982B8AB7B1008B37ED /* ContentView.swift in Sources */,
 				1C0538962B8AB7B1008B37ED /* BenBio Watch App.swift in Sources */,
 				1C69A1292B8BA768009395BD /* DatePickerView.swift in Sources */,
 				1C69A1272B8BA0CB009395BD /* Functions.swift in Sources */,
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		1C0538A72B8ABBCA008B37ED /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 				1C0538B02B8ABBCA008B37ED /* ContentView.swift in Sources */,
 				1C0538AE2B8ABBCA008B37ED /* BenBio iOS App.swift in Sources */,
 				1C69A1252B8B9FC6009395BD /* Functions.swift in Sources */,
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		1CAB91A12B8B24CB00010986 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 				1CAB91AA2B8B24CB00010986 /* ContentView.swift in Sources */,
 				1CAB91A82B8B24CB00010986 /* BenBio Mac App.swift in Sources */,
 				1C69A1262B8BA0CA009395BD /* Functions.swift in Sources */,
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		1CBC14C72BC01E0E0088292E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 				1CBC14D72BC023C20088292E /* DateFormatterTests.swift in Sources */,
 				1CBC14D52BC01E610088292E /* RhythmsCalcTests.swift in Sources */,
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		B5594A752BC199AE0000E46C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 				B5594A852BC1A1A40000E46C /* BenBio_iOS_AppUITest.swift in Sources */,
 				B5594A7C2BC199AE0000E46C /* BenBio_iOS_AppUITests.swift in Sources */,
 				B5594A7E2BC199AE0000E46C /* BenBio_iOS_AppUITestsLaunchTests.swift in Sources */,
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 		B5C3F44D2C9567AC002179F7 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
 			files = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
@@ -674,7 +629,7 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		1C05389E2B8AB7B2008B37ED /* Debug */ = {
+		1C05389E2B8AB7B2008B37ED /* Debug configuration for PBXProject "BenBio" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -710,6 +665,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 728QJVXW3S;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -727,19 +683,22 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_STRICT_CONCURRENCY = complete;
-				WATCHOS_DEPLOYMENT_TARGET = 10.4;
+				WATCHOS_DEPLOYMENT_TARGET = 26.0;
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "This app reads Health data such as VO2Max and heart rate variability to provide cardio and stress insights.";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "This app may write Health data back to HealthKit for tracking and widget display.";
 			};
 			name = Debug;
 		};
-		1C05389F2B8AB7B2008B37ED /* Release */ = {
+		1C05389F2B8AB7B2008B37ED /* Release configuration for PBXProject "BenBio" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -775,6 +734,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 728QJVXW3S;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -786,38 +746,43 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_STRICT_CONCURRENCY = complete;
-				WATCHOS_DEPLOYMENT_TARGET = 10.4;
+				WATCHOS_DEPLOYMENT_TARGET = 26.0;
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "This app reads Health data such as VO2Max and heart rate variability to provide cardio and stress insights.";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "This app may write Health data back to HealthKit for tracking and widget display.";
 			};
 			name = Release;
 		};
-		1C0538A12B8AB7B2008B37ED /* Debug */ = {
+		1C0538A12B8AB7B2008B37ED /* Debug configuration for PBXNativeTarget "BenBio Watch App" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_ENTITLEMENTS = "BenBio Watch App/BenBio Watch App.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 10;
+				CURRENT_PROJECT_VERSION = 20;
 				DEVELOPMENT_ASSET_PATHS = "\"BenBio Watch App/Preview Content\"";
-				DEVELOPMENT_TEAM = 728QJVXW3S;
+				DEVELOPMENT_TEAM = 27U54M874R;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = BenBioWatch;
+				INFOPLIST_KEY_CFBundleDisplayName = BenBio;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKWatchOnly = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = org.benbox.BenBioWatch.Watch;
+				MARKETING_VERSION = 0.2.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.seriousbenentertainment.BenBio.Watch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = watchos;
@@ -826,32 +791,34 @@
 				SWIFT_STRICT_CONCURRENCY = complete;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 11.0;
+				WATCHOS_DEPLOYMENT_TARGET = 26.0;
 			};
 			name = Debug;
 		};
-		1C0538A22B8AB7B2008B37ED /* Release */ = {
+		1C0538A22B8AB7B2008B37ED /* Release configuration for PBXNativeTarget "BenBio Watch App" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_ENTITLEMENTS = "BenBio Watch App/BenBio Watch App.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 10;
+				CURRENT_PROJECT_VERSION = 20;
 				DEVELOPMENT_ASSET_PATHS = "\"BenBio Watch App/Preview Content\"";
-				DEVELOPMENT_TEAM = 728QJVXW3S;
+				DEVELOPMENT_TEAM = 27U54M874R;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = BenBioWatch;
+				INFOPLIST_KEY_CFBundleDisplayName = BenBio;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKWatchOnly = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = org.benbox.BenBioWatch.Watch;
+				MARKETING_VERSION = 0.2.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.seriousbenentertainment.BenBio.Watch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = watchos;
@@ -861,39 +828,41 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				VALIDATE_PRODUCT = YES;
-				WATCHOS_DEPLOYMENT_TARGET = 11.0;
+				WATCHOS_DEPLOYMENT_TARGET = 26.0;
 			};
 			name = Release;
 		};
-		1C0538A52B8AB7B2008B37ED /* Debug */ = {
+		1C0538A52B8AB7B2008B37ED /* Debug configuration for PBXNativeTarget "BenBio" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 8;
-				DEVELOPMENT_TEAM = 728QJVXW3S;
+				CURRENT_PROJECT_VERSION = 20;
+				DEVELOPMENT_TEAM = 27U54M874R;
 				INFOPLIST_KEY_CFBundleDisplayName = BenBioWatch;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
-				MARKETING_VERSION = 0.1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = org.benbox.BenBioWatch.Watch;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				MARKETING_VERSION = 0.2.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.seriousbenentertainment.BenBio;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "This app reads Health data such as VO2Max and heart rate variability to provide cardio and stress insights.";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "This app may write Health data back to HealthKit for tracking and widget display.";
 			};
 			name = Debug;
 		};
-		1C0538A62B8AB7B2008B37ED /* Release */ = {
+		1C0538A62B8AB7B2008B37ED /* Release configuration for PBXNativeTarget "BenBio" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 8;
-				DEVELOPMENT_TEAM = 728QJVXW3S;
+				CURRENT_PROJECT_VERSION = 20;
+				DEVELOPMENT_TEAM = 27U54M874R;
 				INFOPLIST_KEY_CFBundleDisplayName = BenBioWatch;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
-				MARKETING_VERSION = 0.1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = org.benbox.BenBioWatch.Watch;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				MARKETING_VERSION = 0.2.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.seriousbenentertainment.BenBio;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
@@ -901,36 +870,36 @@
 			};
 			name = Release;
 		};
-		1C0538B72B8ABBCB008B37ED /* Debug */ = {
+		1C0538B72B8ABBCB008B37ED /* Debug configuration for PBXNativeTarget "BenBio iOS App" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "BenBio iOS App/BenBio iOS App.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 10;
+				CURRENT_PROJECT_VERSION = 20;
 				DEVELOPMENT_ASSET_PATHS = "\"BenBio iOS App/Preview Content\"";
-				DEVELOPMENT_TEAM = 728QJVXW3S;
+				DEVELOPMENT_TEAM = 27U54M874R;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "BenBio-iOS-App-Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = BenBioWatch;
+				INFOPLIST_KEY_CFBundleDisplayName = BenBio;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
-				INFOPLIST_KEY_NSHealthShareUsageDescription = "BenBioWatch wants to access your health data in ordner to analyze your health and best advise";
-				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "BenBioWatch wants to access your health data in ordner to analyze your health and best advise";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = org.benbox.BenBioWatch.iPhone;
+				MARKETING_VERSION = 0.2.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.seriousbenentertainment.BenBio.iPhone;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -943,36 +912,36 @@
 			};
 			name = Debug;
 		};
-		1C0538B82B8ABBCB008B37ED /* Release */ = {
+		1C0538B82B8ABBCB008B37ED /* Release configuration for PBXNativeTarget "BenBio iOS App" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "BenBio iOS App/BenBio iOS App.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 10;
+				CURRENT_PROJECT_VERSION = 20;
 				DEVELOPMENT_ASSET_PATHS = "\"BenBio iOS App/Preview Content\"";
-				DEVELOPMENT_TEAM = 728QJVXW3S;
+				DEVELOPMENT_TEAM = 27U54M874R;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "BenBio-iOS-App-Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = BenBioWatch;
+				INFOPLIST_KEY_CFBundleDisplayName = BenBio;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
-				INFOPLIST_KEY_NSHealthShareUsageDescription = "BenBioWatch wants to access your health data in ordner to analyze your health and best advise";
-				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "BenBioWatch wants to access your health data in ordner to analyze your health and best advise";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = org.benbox.BenBioWatch.iPhone;
+				MARKETING_VERSION = 0.2.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.seriousbenentertainment.BenBio.iPhone;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -986,7 +955,7 @@
 			};
 			name = Release;
 		};
-		1CAB91B12B8B24CD00010986 /* Debug */ = {
+		1CAB91B12B8B24CD00010986 /* Debug configuration for PBXNativeTarget "BenBio Mac App" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -994,32 +963,37 @@
 				CODE_SIGN_ENTITLEMENTS = "BenBio Mac App/BenBio_Mac_App.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 10;
+				CURRENT_PROJECT_VERSION = 20;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"BenBio Mac App/Preview Content\"";
-				DEVELOPMENT_TEAM = 728QJVXW3S;
+				DEVELOPMENT_TEAM = 27U54M874R;
+				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = BenBioWatch;
+				INFOPLIST_KEY_CFBundleDisplayName = BenBio;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 15.0;
-				MARKETING_VERSION = 0.1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = org.benbox.BenBioWatch.MacOS;
+				MACOSX_DEPLOYMENT_TARGET = 26.0;
+				MARKETING_VERSION = 0.2.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.seriousbenentertainment.BenBio.Mac;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = YES;
 				SDKROOT = macosx;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_STRICT_CONCURRENCY = complete;
 				SWIFT_VERSION = 5.0;
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "This app reads Health data such as VO2Max and heart rate variability to provide cardio and stress insights.";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "This app may write Health data back to HealthKit for tracking and widget display.";
 			};
 			name = Debug;
 		};
-		1CAB91B22B8B24CD00010986 /* Release */ = {
+		1CAB91B22B8B24CD00010986 /* Release configuration for PBXNativeTarget "BenBio Mac App" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -1027,24 +1001,27 @@
 				CODE_SIGN_ENTITLEMENTS = "BenBio Mac App/BenBio_Mac_App.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 10;
+				CURRENT_PROJECT_VERSION = 20;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"BenBio Mac App/Preview Content\"";
-				DEVELOPMENT_TEAM = 728QJVXW3S;
+				DEVELOPMENT_TEAM = 27U54M874R;
+				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_CFBundleDisplayName = BenBioWatch;
+				INFOPLIST_KEY_CFBundleDisplayName = BenBio;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 15.0;
-				MARKETING_VERSION = 0.1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = org.benbox.BenBioWatch.MacOS;
+				MACOSX_DEPLOYMENT_TARGET = 26.0;
+				MARKETING_VERSION = 0.2.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.seriousbenentertainment.BenBio.Mac;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = YES;
 				SDKROOT = macosx;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_STRICT_CONCURRENCY = complete;
@@ -1052,17 +1029,17 @@
 			};
 			name = Release;
 		};
-		1CBC14D12BC01E0E0088292E /* Debug */ = {
+		1CBC14D12BC01E0E0088292E /* Debug configuration for PBXNativeTarget "BenBio iOS AppTests" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 728QJVXW3S;
+				DEVELOPMENT_TEAM = 27U54M874R;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "org.benbox.BenBio-iOS-AppTests";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.seriousbenentertainment.BenBio-iOS-AppTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_EMIT_LOC_STRINGS = NO;
@@ -1073,17 +1050,17 @@
 			};
 			name = Debug;
 		};
-		1CBC14D22BC01E0E0088292E /* Release */ = {
+		1CBC14D22BC01E0E0088292E /* Release configuration for PBXNativeTarget "BenBio iOS AppTests" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 728QJVXW3S;
+				DEVELOPMENT_TEAM = 27U54M874R;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "org.benbox.BenBio-iOS-AppTests";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.seriousbenentertainment.BenBio-iOS-AppTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_EMIT_LOC_STRINGS = NO;
@@ -1095,16 +1072,16 @@
 			};
 			name = Release;
 		};
-		B5594A812BC199AE0000E46C /* Debug */ = {
+		B5594A812BC199AE0000E46C /* Debug configuration for PBXNativeTarget "BenBio iOS AppUITests" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 728QJVXW3S;
+				DEVELOPMENT_TEAM = 27U54M874R;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "org.benbox.benbio.BenBio-iOS-AppUITests";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.seriousbenentertainment.BenBio-iOS-AppUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_EMIT_LOC_STRINGS = NO;
@@ -1114,16 +1091,16 @@
 			};
 			name = Debug;
 		};
-		B5594A822BC199AE0000E46C /* Release */ = {
+		B5594A822BC199AE0000E46C /* Release configuration for PBXNativeTarget "BenBio iOS AppUITests" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 728QJVXW3S;
+				DEVELOPMENT_TEAM = 27U54M874R;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "org.benbox.benbio.BenBio-iOS-AppUITests";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.seriousbenentertainment.BenBio-iOS-AppUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_EMIT_LOC_STRINGS = NO;
@@ -1134,7 +1111,7 @@
 			};
 			name = Release;
 		};
-		B5C3F4612C9567AD002179F7 /* Debug */ = {
+		B5C3F4612C9567AD002179F7 /* Debug configuration for PBXNativeTarget "BenBio Watch WidgetExtension" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1142,11 +1119,11 @@
 				CODE_SIGN_ENTITLEMENTS = "BenBio Watch WidgetExtension.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 10;
-				DEVELOPMENT_TEAM = 728QJVXW3S;
+				CURRENT_PROJECT_VERSION = 20;
+				DEVELOPMENT_TEAM = 27U54M874R;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "BenBio Watch Widget/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "BenBioWatch Widget";
+				INFOPLIST_KEY_CFBundleDisplayName = "BenBio Widget";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1154,8 +1131,8 @@
 					"@executable_path/../../Frameworks",
 					"@executable_path/../../../../Frameworks",
 				);
-				MARKETING_VERSION = 0.1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = org.benbox.BenBioWatch.Watch.Widget;
+				MARKETING_VERSION = 0.2.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.seriousbenentertainment.BenBio.Watch.Widget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -1166,7 +1143,7 @@
 			};
 			name = Debug;
 		};
-		B5C3F4622C9567AD002179F7 /* Release */ = {
+		B5C3F4622C9567AD002179F7 /* Release configuration for PBXNativeTarget "BenBio Watch WidgetExtension" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1174,11 +1151,11 @@
 				CODE_SIGN_ENTITLEMENTS = "BenBio Watch WidgetExtension.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 10;
-				DEVELOPMENT_TEAM = 728QJVXW3S;
+				CURRENT_PROJECT_VERSION = 20;
+				DEVELOPMENT_TEAM = 27U54M874R;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "BenBio Watch Widget/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "BenBioWatch Widget";
+				INFOPLIST_KEY_CFBundleDisplayName = "BenBio Widget";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1186,8 +1163,8 @@
 					"@executable_path/../../Frameworks",
 					"@executable_path/../../../../Frameworks",
 				);
-				MARKETING_VERSION = 0.1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = org.benbox.BenBioWatch.Watch.Widget;
+				MARKETING_VERSION = 0.2.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.seriousbenentertainment.BenBio.Watch.Widget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -1205,73 +1182,65 @@
 		1C0538872B8AB7B0008B37ED /* Build configuration list for PBXProject "BenBio" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				1C05389E2B8AB7B2008B37ED /* Debug */,
-				1C05389F2B8AB7B2008B37ED /* Release */,
+				1C05389E2B8AB7B2008B37ED /* Debug configuration for PBXProject "BenBio" */,
+				1C05389F2B8AB7B2008B37ED /* Release configuration for PBXProject "BenBio" */,
 			);
-			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 		1C0538A02B8AB7B2008B37ED /* Build configuration list for PBXNativeTarget "BenBio Watch App" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				1C0538A12B8AB7B2008B37ED /* Debug */,
-				1C0538A22B8AB7B2008B37ED /* Release */,
+				1C0538A12B8AB7B2008B37ED /* Debug configuration for PBXNativeTarget "BenBio Watch App" */,
+				1C0538A22B8AB7B2008B37ED /* Release configuration for PBXNativeTarget "BenBio Watch App" */,
 			);
-			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 		1C0538A42B8AB7B2008B37ED /* Build configuration list for PBXNativeTarget "BenBio" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				1C0538A52B8AB7B2008B37ED /* Debug */,
-				1C0538A62B8AB7B2008B37ED /* Release */,
+				1C0538A52B8AB7B2008B37ED /* Debug configuration for PBXNativeTarget "BenBio" */,
+				1C0538A62B8AB7B2008B37ED /* Release configuration for PBXNativeTarget "BenBio" */,
 			);
-			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 		1C0538B62B8ABBCB008B37ED /* Build configuration list for PBXNativeTarget "BenBio iOS App" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				1C0538B72B8ABBCB008B37ED /* Debug */,
-				1C0538B82B8ABBCB008B37ED /* Release */,
+				1C0538B72B8ABBCB008B37ED /* Debug configuration for PBXNativeTarget "BenBio iOS App" */,
+				1C0538B82B8ABBCB008B37ED /* Release configuration for PBXNativeTarget "BenBio iOS App" */,
 			);
-			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 		1CAB91B32B8B24CD00010986 /* Build configuration list for PBXNativeTarget "BenBio Mac App" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				1CAB91B12B8B24CD00010986 /* Debug */,
-				1CAB91B22B8B24CD00010986 /* Release */,
+				1CAB91B12B8B24CD00010986 /* Debug configuration for PBXNativeTarget "BenBio Mac App" */,
+				1CAB91B22B8B24CD00010986 /* Release configuration for PBXNativeTarget "BenBio Mac App" */,
 			);
-			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 		1CBC14D32BC01E0E0088292E /* Build configuration list for PBXNativeTarget "BenBio iOS AppTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				1CBC14D12BC01E0E0088292E /* Debug */,
-				1CBC14D22BC01E0E0088292E /* Release */,
+				1CBC14D12BC01E0E0088292E /* Debug configuration for PBXNativeTarget "BenBio iOS AppTests" */,
+				1CBC14D22BC01E0E0088292E /* Release configuration for PBXNativeTarget "BenBio iOS AppTests" */,
 			);
-			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 		B5594A832BC199AE0000E46C /* Build configuration list for PBXNativeTarget "BenBio iOS AppUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				B5594A812BC199AE0000E46C /* Debug */,
-				B5594A822BC199AE0000E46C /* Release */,
+				B5594A812BC199AE0000E46C /* Debug configuration for PBXNativeTarget "BenBio iOS AppUITests" */,
+				B5594A822BC199AE0000E46C /* Release configuration for PBXNativeTarget "BenBio iOS AppUITests" */,
 			);
-			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 		B5C3F4602C9567AD002179F7 /* Build configuration list for PBXNativeTarget "BenBio Watch WidgetExtension" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				B5C3F4612C9567AD002179F7 /* Debug */,
-				B5C3F4622C9567AD002179F7 /* Release */,
+				B5C3F4612C9567AD002179F7 /* Debug configuration for PBXNativeTarget "BenBio Watch WidgetExtension" */,
+				B5C3F4622C9567AD002179F7 /* Release configuration for PBXNativeTarget "BenBio Watch WidgetExtension" */,
 			);
-			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */

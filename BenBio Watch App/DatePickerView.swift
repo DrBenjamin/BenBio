@@ -7,12 +7,10 @@
 
 import SwiftUI
 
-var birthday: String? = defaults.string(forKey: "birthday")
-var components = DateComponents()
-
 struct DatePickerView: View {
     @State private var calendarDate: DateComponents
     @State private var selectedDate: Date
+
     var selectedDateProxy: Binding<Date> {
         Binding<Date>(
             get: {
@@ -32,9 +30,8 @@ struct DatePickerView: View {
                     dateFormatter.dateFormat = "dd/MM/yyyy"
                     dateFormatter.timeZone = timeZone
                     let dateString = dateFormatter.string(from: date)
-                    birthday = dateString
-                    defaults.set(birthday, forKey: "birthday")
-                    calcRhythm(birthday: DateFormat().date(from: birthday ?? "02/07/1979"))
+                    groupDefaults?.set(dateString, forKey: "birthday")
+                    calcRhythm(birthday: DateFormat().date(from: dateString))
                 } else {
                     print("Could not convert DateComponents to Date")
                 }
@@ -43,50 +40,9 @@ struct DatePickerView: View {
     }
     
     init() {
-        birthday = defaults.string(forKey: "birthday")
-        
-        // Year is at position 7 to 10
-        if let birthday = birthday, birthday.count >= 10 {
-            let startIndex = birthday.index(birthday.startIndex, offsetBy: 6) // Index of 7th character
-            let endIndex = birthday.index(birthday.startIndex, offsetBy: 9) // Index of 10th character
-            let range = startIndex...endIndex
-            let yearSubstring = String(birthday[range]) // Extracts characters 7 to 10
-            if let year = Int(yearSubstring) {
-                components.year = year
-            } else {
-                components.year = 1979
-            }
-        } else {
-            components.year = 1979
-        }
-        // Month is at position 4 and 5
-        if let birthday = birthday, birthday.count >= 5 {
-            let startIndex = birthday.index(birthday.startIndex, offsetBy: 3) // Index of 4th character
-            let endIndex = birthday.index(birthday.startIndex, offsetBy: 4) // Index of 5th character
-            let range = startIndex...endIndex
-            let monthSubstring = String(birthday[range]) // Extracts characters 4 to 5
-            if let month = Int(monthSubstring) {
-                components.month = month
-            } else {
-                components.month = 07
-            }
-        } else {
-            components.month = 07
-        }
-        // Day is at position 1 and 2
-        if let birthday = birthday, birthday.count >= 2 {
-            let startIndex = birthday.startIndex // Index of 1st character
-            let endIndex = birthday.index(birthday.startIndex, offsetBy: 1) // Index of 2nd character
-            let range = startIndex...endIndex
-            let daySubstring = String(birthday[range]) // Extracts characters 1 to 2
-            if let day = Int(daySubstring) {
-                components.day = day
-            } else {
-                components.day = 02
-            }
-        } else {
-            components.day = 02
-        }
+        let storedBirthday = groupDefaults?.string(forKey: "birthday") ?? "02/07/1979"
+        let components = Self.dateComponents(from: storedBirthday)
+
         // Use the current calendar to create a Date from components
         if let defaultDate = Calendar.current.date(from: components) {
             _selectedDate = State(initialValue: defaultDate)
@@ -104,50 +60,9 @@ struct DatePickerView: View {
                 "Select Birthday", selection: selectedDateProxy, displayedComponents: .date)
         } //: VStack
         .onAppear {
-            birthday = defaults.string(forKey: "birthday")
-            
-            // Year is at position 7 to 10
-            if let birthday = birthday, birthday.count >= 10 {
-                let startIndex = birthday.index(birthday.startIndex, offsetBy: 6) // Index of 7th character
-                let endIndex = birthday.index(birthday.startIndex, offsetBy: 9) // Index of 10th character
-                let range = startIndex...endIndex
-                let yearSubstring = String(birthday[range]) // Extracts characters 7 to 10
-                if let year = Int(yearSubstring) {
-                    components.year = year
-                } else {
-                    components.year = 1979
-                }
-            } else {
-                components.year = 1979
-            }
-            // Month is at position 4 and 5
-            if let birthday = birthday, birthday.count >= 5 {
-                let startIndex = birthday.index(birthday.startIndex, offsetBy: 3) // Index of 4th character
-                let endIndex = birthday.index(birthday.startIndex, offsetBy: 4) // Index of 5th character
-                let range = startIndex...endIndex
-                let monthSubstring = String(birthday[range]) // Extracts characters 4 to 5
-                if let month = Int(monthSubstring) {
-                    components.month = month
-                } else {
-                    components.month = 07
-                }
-            } else {
-                components.month = 07
-            }
-            // Day is at position 1 and 2
-            if let birthday = birthday, birthday.count >= 2 {
-                let startIndex = birthday.startIndex // Index of 1st character
-                let endIndex = birthday.index(birthday.startIndex, offsetBy: 1) // Index of 2nd character
-                let range = startIndex...endIndex
-                let daySubstring = String(birthday[range]) // Extracts characters 1 to 2
-                if let day = Int(daySubstring) {
-                    components.day = day
-                } else {
-                    components.day = 02
-                }
-            } else {
-                components.day = 02
-            }
+            let storedBirthday = groupDefaults?.string(forKey: "birthday") ?? "02/07/1979"
+            let components = Self.dateComponents(from: storedBirthday)
+
             // Use the current calendar to create a Date from components
             if let defaultDate = Calendar.current.date(from: components) {
                 self._selectedDate.wrappedValue = defaultDate
@@ -159,5 +74,40 @@ struct DatePickerView: View {
             self._calendarDate.wrappedValue = components
         } //: onAppear
     } //: View
+
+    private static func dateComponents(from birthday: String) -> DateComponents {
+        var components = DateComponents()
+
+        if birthday.count >= 10 {
+            let startIndex = birthday.index(birthday.startIndex, offsetBy: 6)
+            let endIndex = birthday.index(birthday.startIndex, offsetBy: 9)
+            let range = startIndex...endIndex
+            let yearSubstring = String(birthday[range])
+            components.year = Int(yearSubstring) ?? 1979
+        } else {
+            components.year = 1979
+        }
+
+        if birthday.count >= 5 {
+            let startIndex = birthday.index(birthday.startIndex, offsetBy: 3)
+            let endIndex = birthday.index(birthday.startIndex, offsetBy: 4)
+            let range = startIndex...endIndex
+            let monthSubstring = String(birthday[range])
+            components.month = Int(monthSubstring) ?? 7
+        } else {
+            components.month = 7
+        }
+
+        if birthday.count >= 2 {
+            let endIndex = birthday.index(birthday.startIndex, offsetBy: 1)
+            let range = birthday.startIndex...endIndex
+            let daySubstring = String(birthday[range])
+            components.day = Int(daySubstring) ?? 2
+        } else {
+            components.day = 2
+        }
+
+        return components
+    }
 } //: DatePickerView
 

@@ -4,275 +4,463 @@
 //
 //  Created by Gross, Benjamin on 25.02.24.
 //
-// Imports
-import SwiftUI
 
-// Set variables
-nonisolated(unsafe) var birthday: String? = defaults.string(forKey: "birthday")
-nonisolated(unsafe) var components = DateComponents()
-nonisolated(unsafe) var calendarDate  = DateComponents()
+import SwiftUI
+#if os(iOS)
+import UIKit
+#endif
 
 struct ContentView: View {
-    // Set variables
-    @State var physical: Float = defaults.float(forKey: "physical")
-    @State var emotional: Float = defaults.float(forKey: "emotional")
-    @State var mental: Float = defaults.float(forKey: "mental")
-    @State var physical_1: Float = defaults.float(forKey: "physical_1")
-    @State var emotional_1: Float = defaults.float(forKey: "emotional_1")
-    @State var mental_1: Float = defaults.float(forKey: "mental_1")
-    @State private var calendarDate: DateComponents = {
-        var calendar = Calendar.current
-        return calendar.dateComponents([.day, .month, .year], from: Date())
-    }()
-    @State private var selectedDate: Date
-    @State var vo2MaxValue: Double = defaults.double(forKey: "vo2MaxValue")
-    @State var SDNNValue: String = defaults.string(forKey: "SDNNValue") ?? "Low"
-    @State var rMSSDValue: String = defaults.string(forKey: "rMSSDValue") ?? "Low"
-    var selectedDateProxy: Binding<Date> {
-        Binding<Date>(
-            get: {
-                // Convert the `calendarDate` to `Date`
-                return Calendar.current.date(from: calendarDate) ?? Date()
-            },
-            set: {
-                let timeZone = TimeZone.current
-                var calendar = Calendar(identifier: .gregorian)
-                calendar.timeZone = timeZone
-                
-                // Store the new date value in `calendarDate` as `DateComponents`
-                calendarDate = Calendar.current.dateComponents([.day, .month, .year], from: $0)
-                if let date = calendar.date(from: calendarDate) {
-                    // Format the Date into a string
-                    let dateFormatter = DateFormatter()
-                    dateFormatter.dateFormat = "dd/MM/yyyy"
-                    dateFormatter.timeZone = timeZone
-                    let dateString = dateFormatter.string(from: date)
-                    birthday = dateString
-                    defaults.set(birthday, forKey: "birthday")
-                    calcRhythm(birthday: DateFormat().date(from: birthday ?? "02/07/1979"))
-                    refreshView()
-                } else {
-                    print("Could not convert DateComponents to Date")
-                }
-            }
-        )
-    }
-    
-    init() {
-        print("App Start")
-        birthday = defaults.string(forKey: "birthday")
-        if birthday == nil {
-            birthday = "02/07/1979"
-            defaults.set(birthday, forKey: "birthday")
-        }
-        calcRhythm(birthday: DateFormat().date(from: birthday ?? "02/07/1979"))
-        
-        // Year is at position 7 to 10
-        if let birthday = birthday, birthday.count >= 10 {
-            let startIndex = birthday.index(birthday.startIndex, offsetBy: 6) // Index of 7th character
-            let endIndex = birthday.index(birthday.startIndex, offsetBy: 9) // Index of 10th character
-            let range = startIndex...endIndex
-            let yearSubstring = String(birthday[range]) // Extracts characters 7 to 10
-            if let year = Int(yearSubstring) {
-                components.year = year
-            } else {
-                components.year = 1979
-            }
-        } else {
-            components.year = 1979
-        }
-        // Month is at position 4 and 5
-        if let birthday = birthday, birthday.count >= 5 {
-            let startIndex = birthday.index(birthday.startIndex, offsetBy: 3) // Index of 4th character
-            let endIndex = birthday.index(birthday.startIndex, offsetBy: 4) // Index of 5th character
-            let range = startIndex...endIndex
-            let monthSubstring = String(birthday[range]) // Extracts characters 4 to 5
-            if let month = Int(monthSubstring) {
-                components.month = month
-            } else {
-                components.month = 07
-            }
-        } else {
-            components.month = 07
-        }
-        // Day is at position 1 and 2
-        if let birthday = birthday, birthday.count >= 2 {
-            let startIndex = birthday.startIndex // Index of 1st character
-            let endIndex = birthday.index(birthday.startIndex, offsetBy: 1) // Index of 2nd character
-            let range = startIndex...endIndex
-            let daySubstring = String(birthday[range]) // Extracts characters 1 to 2
-            if let day = Int(daySubstring) {
-                components.day = day
-            } else {
-                components.day = 02
-            }
-        } else {
-            components.day = 02
-        }
-        // Use the current calendar to create a Date from components
-        if let defaultDate = Calendar.current.date(from: components) {
-            _selectedDate = State(initialValue: defaultDate)
-        } else {
-            // Handle the case where the date couldn't be created,
-            // for example, by using the current date:
-            _selectedDate = State(initialValue: Date())
-        }
-        _calendarDate = State(initialValue: components)
-    } //: init
-    
-    var body: some View {
-        Image("BackGround")
-            .resizable()
-            .aspectRatio(contentMode: .fill)
-            .ignoresSafeArea()
-        VStack {
-            DatePicker("Select your birthday", selection: selectedDateProxy, displayedComponents: .date)
-            .datePickerStyle(WheelDatePickerStyle())
-            Spacer()
+    @State private var physical: Float = groupDefaults?.float(forKey: "physical") ?? 0.0
+    @State private var emotional: Float = groupDefaults?.float(forKey: "emotional") ?? 0.0
+    @State private var mental: Float = groupDefaults?.float(forKey: "mental") ?? 0.0
+    @State private var physicalYesterday: Float = groupDefaults?.float(forKey: "physical_1") ?? 0.0
+    @State private var emotionalYesterday: Float = groupDefaults?.float(forKey: "emotional_1") ?? 0.0
+    @State private var mentalYesterday: Float = groupDefaults?.float(forKey: "mental_1") ?? 0.0
 
-            Group {
-                if physical < -0.05 {
-                    if physical > physical_1 {
-                        Text("💪 \(String(format: "%.0f", physical * 100))%  ⬆️").font(.system(size: 30)).foregroundStyle(.orange)
-                    } else {
-                        Text("💪 \(String(format: "%.0f", physical * 100))%  ⬇️").font(.system(size: 30)).foregroundStyle(.orange)
+    @State private var vo2MaxValue: Double = groupDefaults?.double(forKey: "vo2MaxValue") ?? 0.0
+    @State private var sdnnValue: String = groupDefaults?.string(forKey: "SDNNValue") ?? "Low"
+    @State private var rmssdValue: String = groupDefaults?.string(forKey: "rMSSDValue") ?? "Low"
+
+    @State private var birthdayString: String = groupDefaults?.string(forKey: "birthday") ?? "02/07/1979"
+    @State private var selectedBirthday: Date = Date()
+    @State private var showBirthdayEditor: Bool = false
+    @Environment(\.scenePhase) private var scenePhase
+    @Environment(\.horizontalSizeClass) private var horizontalSizeClass
+
+    init() {
+        print("iOS App Start")
+        if groupDefaults?.string(forKey: "birthday") == nil {
+            groupDefaults?.set("02/07/1979", forKey: "birthday")
+        }
+
+        let storedBirthday = groupDefaults?.string(forKey: "birthday") ?? "02/07/1979"
+        calcRhythm(birthday: DateFormat().date(from: storedBirthday))
+    }
+
+    var body: some View {
+        ZStack {
+            Image("BackGround")
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+                .ignoresSafeArea()
+
+            GeometryReader { proxy in
+                ScrollView {
+                    VStack(spacing: isPad ? 14 : 12) {
+                        headerCard
+                        dashboardContent
                     }
+                    .frame(minHeight: proxy.size.height, alignment: .center)
+                    .padding(.horizontal, isPad ? 24 : 16)
+                    .padding(.vertical, 14)
+                    .frame(maxWidth: 980, alignment: .center)
+                    .frame(maxWidth: .infinity, alignment: .center)
                 }
-                if physical >= -0.05 && physical <= 0.05 {
-                    if physical < 0 {
-                        if physical > physical_1 {
-                            Text("💪 \(String(format: "%.0f", physical * 100))%  ⬆️").font(.system(size: 30)).foregroundStyle(.red)
-                        } else {
-                            Text("💪 \(String(format: "%.0f", physical * 100))%  ⬇️").font(.system(size: 30)).foregroundStyle(.red)
-                        }
-                    }
-                    else {
-                        if physical > physical_1 {
-                            Text("💪 +\(String(format: "%.0f", physical * 100))%  ⬆️").font(.system(size: 30)).foregroundStyle(.red)
-                        } else {
-                            Text("💪 +\(String(format: "%.0f", physical * 100))%  ⬇️").font(.system(size: 30)).foregroundStyle(.red)
-                        }
-                    }
-                }
-                if physical > 0.05 {
-                    if physical > physical_1 {
-                        Text("💪 +\(String(format: "%.0f", physical * 100))%  ⬆️").font(.system(size: 30)).foregroundStyle(.green)
-                    } else {
-                        Text("💪 +\(String(format: "%.0f", physical * 100))%  ⬇️").font(.system(size: 30)).foregroundStyle(.green)
-                    }
-                }
-            } //: Group
-            
-            Group {
-                if emotional < -0.05 {
-                    if emotional > emotional_1 {
-                        Text("🧡 \(String(format: "%.0f", emotional * 100))%  ⬆️").font(.system(size: 30)).foregroundStyle(.orange)
-                    } else {
-                        Text("🧡 \(String(format: "%.0f", emotional * 100))%  ⬇️").font(.system(size: 30)).foregroundStyle(.orange)
-                    }
-                }
-                if emotional >= -0.05 && emotional <= 0.05 {
-                    if emotional < 0 {
-                        if emotional > emotional_1 {
-                            Text("🧡 \(String(format: "%.0f", emotional * 100))%  ⬆️").font(.system(size: 30)).foregroundStyle(.red)
-                        } else {
-                            Text("🧡 \(String(format: "%.0f", emotional * 100))%  ⬇️").font(.system(size: 30)).foregroundStyle(.red)
-                        }
-                    }
-                    else {
-                        if emotional > emotional_1 {
-                            Text("🧡 +\(String(format: "%.0f", emotional * 100))%  ⬆️").font(.system(size: 30)).foregroundStyle(.red)
-                        } else {
-                            Text("🧡 +\(String(format: "%.0f", emotional * 100))%  ⬇️").font(.system(size: 30)).foregroundStyle(.red)
-                        }
-                    }
-                }
-                if emotional > 0.05 {
-                    if emotional > emotional_1 {
-                        Text("🧡 +\(String(format: "%.0f", emotional * 100))%  ⬆️").font(.system(size: 30)).foregroundStyle(.green)
-                    } else {
-                        Text("🧡 +\(String(format: "%.0f", emotional * 100))%  ⬇️").font(.system(size: 30)).foregroundStyle(.green)
-                    }
-                }
-            } //: Group
-            
-            Group {
-                if mental < -0.05 {
-                    if mental > mental_1 {
-                        Text("🧠 \(String(format: "%.0f", mental * 100))%  ⬆️").font(.system(size: 30)).foregroundStyle(.orange)
-                    } else {
-                        Text("🧠 \(String(format: "%.0f", mental * 100))%  ⬇️").font(.system(size: 30)).foregroundStyle(.orange)
-                    }
-                }
-                if mental >= -0.05 && mental <= 0.05 {
-                    if mental < 0 {
-                        if mental > mental_1 {
-                            Text("🧠 \(String(format: "%.0f", mental * 100))%  ⬆️").font(.system(size: 30)).foregroundStyle(.red)
-                        } else {
-                            Text("🧠 \(String(format: "%.0f", mental * 100))%  ⬇️").font(.system(size: 30)).foregroundStyle(.red)
-                        }
-                    }
-                    else {
-                        if mental > mental_1 {
-                            Text("🧠 +\(String(format: "%.0f", mental * 100))%  ⬆️").font(.system(size: 30)).foregroundStyle(.red)
-                        } else {
-                            Text("🧠 +\(String(format: "%.0f", mental * 100))%  ⬇️").font(.system(size: 30)).foregroundStyle(.red)
-                        }
-                    }
-                }
-                if mental > 0.05 {
-                    if mental > mental_1 {
-                        Text("🧠 +\(String(format: "%.0f", mental * 100))%  ⬆️").font(.system(size: 30)).foregroundStyle(.green)
-                    } else {
-                        Text("🧠 +\(String(format: "%.0f", mental * 100))%  ⬇️").font(.system(size: 30)).foregroundStyle(.green)
-                    }
-                }
-            } //: Group
-            
-            Group {
-                VStack(spacing: 0) {
-                    Text("Cardiofitness: \(String(vo2MaxValue))").font(.system(size: 14)).foregroundStyle(.teal)
-                    Text("Stresslevel (today): \(SDNNValue)").font(.system(size: 14)).foregroundStyle(.teal)
-                    Text("Stresslevel (now): \(rMSSDValue)").font(.system(size: 14)).foregroundStyle(.teal)
-                } //:VStack
-                if physical >= -0.05 && physical <= 0.05 || emotional >= -0.05 && emotional <= 0.05 || mental >= -0.05 && mental <= 0.05 {
-                    Text("Advise ⚠️").font(.system(size: 24)).foregroundStyle(.teal)
-                } else {
-                    if physical + emotional + mental > 1 {
-                        Text("Advise 🥳").font(.system(size: 24)).foregroundStyle(.teal)
-                    }
-                    if physical + emotional + mental >= -1 && physical + emotional + mental <= 1 {
-                        Text("Advise 😃").font(.system(size: 24)).foregroundStyle(.teal)
-                    }
-                    if physical + emotional + mental < -1 {
-                        Text("Advise 😴").font(.system(size: 24)).foregroundStyle(.teal)
-                    }
-                }
-            } //: Group
-            .padding()
-        } //: VStack
+            }
+        }
+        .dynamicTypeSize(isPad ? .xSmall ... .accessibility3 : .xSmall ... .accessibility1)
         .onAppear {
-            refreshView()
+            selectedBirthday = parseBirthday(birthdayString) ?? Date()
+            refreshAll()
             getCardiofitness()
             getHRVdata()
         }
-    } //: View
-    
-    func refreshView() {
-        physical = defaults.float(forKey: "physical")
-        emotional = defaults.float(forKey: "emotional")
-        mental = defaults.float(forKey: "mental")
-        physical_1 = defaults.float(forKey: "physical_1")
-        emotional_1 = defaults.float(forKey: "emotional_1")
-        mental_1 = defaults.float(forKey: "mental_1")
-        vo2MaxValue = defaults.double(forKey: "vo2MaxValue")
-        SDNNValue = defaults.string(forKey: "SDNNValue") ?? "Low"
-        rMSSDValue = defaults.string(forKey: "rMSSDValue") ?? "Low"
-    } //: refreshView
-} //: ContentView
+        .onChange(of: scenePhase) { _, newPhase in
+            if newPhase == .active {
+                refreshAll()
+            }
+        }
+        .sheet(isPresented: $showBirthdayEditor) {
+            birthdayEditor
+                .presentationDetents([.large])
+                .presentationDragIndicator(.visible)
+        }
+    }
+
+    @ViewBuilder
+    private var dashboardContent: some View {
+        if isWide {
+            HStack(alignment: .top, spacing: 14) {
+                VStack(spacing: 14) {
+                    rhythmCard
+                }
+                .frame(maxWidth: .infinity, alignment: .top)
+
+                VStack(spacing: 14) {
+                    statusCard
+                    adviceCard
+                }
+                .frame(maxWidth: .infinity, alignment: .top)
+            }
+        } else {
+            VStack(spacing: 14) {
+                rhythmCard
+                statusCard
+                adviceCard
+            }
+        }
+    }
+
+    private var headerCard: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            HStack {
+                Text("BenBio")
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.7)
+                    .allowsTightening(true)
+                    .font((isCompact ? Font.headline : Font.title3).weight(.bold))
+                Spacer()
+                Button {
+                    selectedBirthday = parseBirthday(birthdayString) ?? Date()
+                    showBirthdayEditor = true
+                } label: {
+                    if isPhone {
+                        Image(systemName: "calendar")
+                            .imageScale(.medium)
+                    } else {
+                        Label("Birthday", systemImage: "calendar")
+                            .labelStyle(.titleAndIcon)
+                            .lineLimit(1)
+                            .minimumScaleFactor(0.6)
+                            .allowsTightening(true)
+                    }
+                }
+                .buttonStyle(.bordered)
+                .controlSize(isCompact ? .mini : .small)
+                .font((isCompact ? Font.footnote : Font.subheadline).weight(.semibold))
+                .fixedSize(horizontal: true, vertical: false)
+            }
+
+            Text("Current: \(birthdayString)")
+                .font(isCompact ? .caption : .footnote)
+                .foregroundStyle(.secondary)
+                .lineLimit(1)
+                .truncationMode(.tail)
+                .allowsTightening(true)
+        }
+        .padding(isPhone ? 10 : (isCompact ? 12 : 14))
+        .frame(maxWidth: isPhone ? phoneCardMaxWidth : .infinity, alignment: .leading)
+        .frame(maxWidth: .infinity, alignment: isPhone ? .center : .leading)
+        .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 14, style: .continuous))
+        .clipped()
+    }
+
+    private var rhythmCard: some View {
+        VStack(spacing: isCompact ? 8 : 10) {
+            rhythmRow(title: "Physical", emoji: "💪", value: physical, previous: physicalYesterday)
+            rhythmRow(title: "Emotional", emoji: "🧡", value: emotional, previous: emotionalYesterday)
+            rhythmRow(title: "Mental", emoji: "🧠", value: mental, previous: mentalYesterday)
+        }
+        .padding(isPhone ? 10 : (isCompact ? 12 : 14))
+        .frame(maxWidth: isPhone ? phoneCardMaxWidth : .infinity, alignment: .leading)
+        .frame(maxWidth: .infinity, alignment: isPhone ? .center : .leading)
+        .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 14, style: .continuous))
+        .clipped()
+    }
+
+    private var statusCard: some View {
+        VStack(spacing: isCompact ? 8 : 10) {
+            statRow(label: isCompact ? "Cardio" : "Cardiofitness", value: String(format: "%.1f", vo2MaxValue), color: .teal)
+            statRow(label: isCompact ? "Stress day" : "Stress (today)", value: sdnnValue, color: stressColor(sdnnValue))
+            statRow(label: isCompact ? "Stress now" : "Stress (now)", value: rmssdValue, color: stressColor(rmssdValue))
+        }
+        .padding(isPhone ? 10 : (isCompact ? 12 : 14))
+        .frame(maxWidth: isPhone ? phoneCardMaxWidth : .infinity, alignment: .leading)
+        .frame(maxWidth: .infinity, alignment: isPhone ? .center : .leading)
+        .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 14, style: .continuous))
+        .clipped()
+    }
+
+    private var adviceCard: some View {
+        Group {
+            if isPhone {
+                VStack(spacing: 6) {
+                    Text("Advice")
+                        .font(.footnote)
+                        .foregroundStyle(.secondary)
+                    Text(adviceEmoji())
+                        .font(.title3)
+                }
+                .frame(maxWidth: .infinity, alignment: .center)
+            } else {
+                HStack {
+                    Text("Advice")
+                        .font(isCompact ? .footnote : .subheadline)
+                        .foregroundStyle(.secondary)
+                    Spacer()
+                    Text(adviceEmoji())
+                        .font(isCompact ? .title3 : .title3)
+                }
+            }
+        }
+        .padding(isPhone ? 10 : (isCompact ? 12 : 14))
+        .frame(maxWidth: isPhone ? phoneCardMaxWidth : .infinity, alignment: .leading)
+        .frame(maxWidth: .infinity, alignment: isPhone ? .center : .leading)
+        .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 14, style: .continuous))
+        .clipped()
+    }
+
+    private var birthdayEditor: some View {
+        NavigationStack {
+            ScrollView {
+                VStack(spacing: 14) {
+                    DatePicker("Birthday", selection: $selectedBirthday, displayedComponents: .date)
+                        .datePickerStyle(.graphical)
+                        .labelsHidden()
+
+                    Button("Apply Birthday") {
+                        let newBirthday = DateFormat().string(from: selectedBirthday)
+                        birthdayString = newBirthday
+                        groupDefaults?.set(newBirthday, forKey: "birthday")
+                        calcRhythm(birthday: DateFormat().date(from: newBirthday))
+                        refreshAll()
+                        showBirthdayEditor = false
+                    }
+                    .buttonStyle(.borderedProminent)
+                    .controlSize(.regular)
+                }
+                .padding()
+            }
+            .navigationTitle("Birthday")
+            .toolbar {
+                ToolbarItem(placement: .cancellationAction) {
+                    Button("Close") { showBirthdayEditor = false }
+                }
+            }
+        }
+    }
+
+    @ViewBuilder
+    private func rhythmRow(title: String, emoji: String, value: Float, previous: Float) -> some View {
+        let currentPercent = Int((value * 100).rounded())
+        let previousPercent = Int((previous * 100).rounded())
+        let showArrow = currentPercent != previousPercent
+
+        Group {
+            if isPhone {
+                VStack(spacing: 5) {
+                    HStack(spacing: 6) {
+                        Text(emoji)
+                            .font(.headline)
+                        Text(title)
+                            .font(.footnote)
+                            .foregroundStyle(.secondary)
+                            .lineLimit(1)
+                            .minimumScaleFactor(0.75)
+                            .allowsTightening(true)
+                    }
+                    .frame(maxWidth: .infinity, alignment: .center)
+
+                    HStack(spacing: 5) {
+                        Text("\(currentPercent)%")
+                            .font(.system(.footnote, design: .rounded).weight(.bold))
+                            .lineLimit(1)
+                            .minimumScaleFactor(0.7)
+                            .allowsTightening(true)
+                            .layoutPriority(2)
+                        if showArrow {
+                            Image(systemName: value >= previous ? "arrow.up" : "arrow.down")
+                                .font(Font.caption.weight(.bold))
+                                .layoutPriority(1)
+                        }
+                    }
+                    .foregroundStyle(phaseColor(value))
+                    .monospacedDigit()
+                    .padding(.horizontal, 6)
+                    .padding(.vertical, 3)
+                    .frame(minWidth: 58, alignment: .center)
+                    .fixedSize(horizontal: false, vertical: true)
+                    .background(phaseColor(value).opacity(0.15), in: Capsule())
+                }
+            } else {
+                HStack(spacing: isCompact ? 5 : 8) {
+                    Text(emoji)
+                        .font(isCompact ? .headline : .title3)
+
+                    Text(title)
+                        .font(isCompact ? .footnote : .subheadline)
+                        .foregroundStyle(.secondary)
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.75)
+                        .allowsTightening(true)
+
+                    Spacer()
+
+                    HStack(spacing: 5) {
+                        Text("\(currentPercent)%")
+                            .font(.system(isCompact ? .footnote : .subheadline, design: .rounded).weight(.bold))
+                            .lineLimit(1)
+                            .minimumScaleFactor(0.75)
+                            .allowsTightening(true)
+                            .layoutPriority(2)
+                        if showArrow {
+                            Image(systemName: value >= previous ? "arrow.up" : "arrow.down")
+                                .font((isCompact ? Font.caption : Font.footnote).weight(.bold))
+                                .layoutPriority(1)
+                        }
+                    }
+                    .foregroundStyle(phaseColor(value))
+                    .monospacedDigit()
+                    .padding(.horizontal, isCompact ? 6 : 10)
+                    .padding(.vertical, isCompact ? 4 : 6)
+                    .frame(minWidth: isCompact ? 62 : 72, alignment: .center)
+                    .fixedSize(horizontal: false, vertical: true)
+                    .background(phaseColor(value).opacity(0.15), in: Capsule())
+                }
+            }
+        }
+        .frame(maxWidth: .infinity, alignment: isPhone ? .center : .leading)
+        .clipped()
+    }
+
+    @ViewBuilder
+    private func statRow(label: String, value: String, color: Color) -> some View {
+        Group {
+            if isPhone {
+                VStack(spacing: 5) {
+                    Text(label)
+                        .font(.footnote)
+                        .foregroundStyle(.secondary)
+                        .lineLimit(2)
+                        .minimumScaleFactor(0.7)
+                        .multilineTextAlignment(.center)
+                        .truncationMode(.tail)
+                        .fixedSize(horizontal: false, vertical: true)
+
+                    Text(value)
+                        .font(Font.footnote.weight(.semibold))
+                        .foregroundStyle(color)
+                        .layoutPriority(1)
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.6)
+                        .allowsTightening(true)
+                        .padding(.horizontal, 6)
+                        .padding(.vertical, 2)
+                        .background(color.opacity(0.15), in: Capsule())
+                }
+                .frame(maxWidth: .infinity, alignment: .center)
+            } else {
+                HStack {
+                    Text(label)
+                        .font(isCompact ? .footnote : .subheadline)
+                        .foregroundStyle(.secondary)
+                        .lineLimit(isCompact ? 2 : 1)
+                        .minimumScaleFactor(0.7)
+                        .multilineTextAlignment(.leading)
+                        .truncationMode(.tail)
+                        .fixedSize(horizontal: false, vertical: true)
+                    Spacer()
+                    Text(value)
+                        .font((isCompact ? Font.footnote : Font.subheadline).weight(.semibold))
+                        .foregroundStyle(color)
+                        .layoutPriority(1)
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.6)
+                        .allowsTightening(true)
+                        .padding(.horizontal, isCompact ? 6 : 10)
+                        .padding(.vertical, isCompact ? 3 : 4)
+                        .background(color.opacity(0.15), in: Capsule())
+                }
+            }
+        }
+        .frame(maxWidth: .infinity, alignment: isPhone ? .center : .leading)
+        .clipped()
+    }
+
+    private var isCompact: Bool {
+        horizontalSizeClass != .regular
+    }
+
+    private var isWide: Bool {
+        horizontalSizeClass == .regular
+    }
+
+    private var isPad: Bool {
+        #if os(iOS)
+        return UIDevice.current.userInterfaceIdiom == .pad
+        #else
+        return false
+        #endif
+    }
+
+    private var isPhone: Bool {
+        #if os(iOS)
+        return UIDevice.current.userInterfaceIdiom == .phone
+        #else
+        return false
+        #endif
+    }
+
+    private var phoneCardMaxWidth: CGFloat {
+        #if os(iOS)
+        // Prefer a conservative max width that works across iPhone sizes without using UIScreen.main
+        // This avoids deprecation warnings on iOS 26 where UIScreen.main is discouraged.
+        return 360
+        #else
+        return 360
+        #endif
+    }
+
+    private func phaseColor(_ value: Float) -> Color {
+        if value < -0.05 { return .orange }
+        if value <= 0.05 { return .red }
+        return .green
+    }
+
+    private func stressColor(_ level: String) -> Color {
+        switch level {
+        case "High": return .red
+        case "Medium": return .orange
+        default: return .green
+        }
+    }
+
+    private func adviceEmoji() -> String {
+        if physical >= -0.05 && physical <= 0.05 || emotional >= -0.05 && emotional <= 0.05 || mental >= -0.05 && mental <= 0.05 {
+            return "⚠️"
+        }
+
+        let sum = physical + emotional + mental
+        if sum > 1 { return "🥳" }
+        if sum < -1 { return "😴" }
+        return "😃"
+    }
+
+    private func parseBirthday(_ value: String) -> Date? {
+        DateFormat().date(from: value)
+    }
+
+    private func refreshAll() {
+        let birthdayString = groupDefaults?.string(forKey: "birthday") ?? "02/07/1979"
+        calcRhythm(birthday: DateFormat().date(from: birthdayString))
+        refreshView()
+        // Fetch latest HealthKit metrics then refresh the view so the UI
+        // reflects the newest VO2/HRV values stored in the app group.
+        Task {
+            print("[BenBio iOS] requesting HealthKit metrics...")
+            let metrics = await fetchHealthMetricsAndStore()
+            print("[BenBio iOS] fetched metrics: sdnn=\(metrics.sdnnMS ?? -1), vo2=\(metrics.vo2Max ?? -1)")
+            refreshView()
+        }
+    }
+
+    private func refreshView() {
+        physical = groupDefaults?.float(forKey: "physical") ?? 0.0
+        emotional = groupDefaults?.float(forKey: "emotional") ?? 0.0
+        mental = groupDefaults?.float(forKey: "mental") ?? 0.0
+        physicalYesterday = groupDefaults?.float(forKey: "physical_1") ?? 0.0
+        emotionalYesterday = groupDefaults?.float(forKey: "emotional_1") ?? 0.0
+        mentalYesterday = groupDefaults?.float(forKey: "mental_1") ?? 0.0
+        vo2MaxValue = groupDefaults?.double(forKey: "vo2MaxValue") ?? 0.0
+        sdnnValue = groupDefaults?.string(forKey: "SDNNValue") ?? "Low"
+        rmssdValue = groupDefaults?.string(forKey: "rMSSDValue") ?? "Low"
+    }
+}
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
     }
 }
+

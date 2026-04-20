@@ -9,6 +9,9 @@ import SwiftUI
 
 @main
 struct BenBio_Mac_App: App {
+    init() {
+        enableGroupDefaultsAccess()
+    }
     var body: some Scene {
         WindowGroup {
             ContentView()

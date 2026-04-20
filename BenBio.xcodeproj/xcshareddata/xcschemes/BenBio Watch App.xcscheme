@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1600"
+   LastUpgradeVersion = "2610"
    version = "1.7">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -17,20 +17,6 @@
                BlueprintIdentifier = "1C05388F2B8AB7B1008B37ED"
                BuildableName = "BenBio Watch App.app"
                BlueprintName = "BenBio Watch App"
-               ReferencedContainer = "container:BenBio.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "1C0538892B8AB7B1008B37ED"
-               BuildableName = "BenBio.app"
-               BlueprintName = "BenBio"
                ReferencedContainer = "container:BenBio.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

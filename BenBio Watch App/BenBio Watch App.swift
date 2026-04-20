@@ -9,6 +9,9 @@ import SwiftUI
 
 @main
 struct BenBio_Watch_App: App {
+    init() {
+        enableGroupDefaultsAccess()
+    }
     var body: some Scene {
         WindowGroup {
             ContentView()

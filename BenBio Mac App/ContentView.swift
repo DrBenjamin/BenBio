@@ -4,267 +4,265 @@
 //
 //  Created by Gross, Benjamin on 25.02.24.
 //
-// Imports
+
 import SwiftUI
 
-// Set variables
-nonisolated(unsafe) var birthday: String? = defaults.string(forKey: "birthday")
-nonisolated(unsafe) var components = DateComponents()
-nonisolated(unsafe) var calendarDate  = DateComponents()
-
 struct ContentView: View {
-    // Set variables
-    @State var physical: Float = defaults.float(forKey: "physical")
-    @State var emotional: Float = defaults.float(forKey: "emotional")
-    @State var mental: Float = defaults.float(forKey: "mental")
-    @State var physical_1: Float = defaults.float(forKey: "physical_1")
-    @State var emotional_1: Float = defaults.float(forKey: "emotional_1")
-    @State var mental_1: Float = defaults.float(forKey: "mental_1")
-    @State private var calendarDate: DateComponents = {
-        var calendar = Calendar.current
-        return calendar.dateComponents([.day, .month, .year], from: Date())
-    }()
-    @State private var selectedDate: Date
-    @State var vo2MaxValue: Double = defaults.double(forKey: "vo2MaxValue")
-    @State var SDNNValue: String = defaults.string(forKey: "SDNNValue") ?? "Low"
-    @State var rMSSDValue: String = defaults.string(forKey: "rMSSDValue") ?? "Low"
-    var selectedDateProxy: Binding<Date> {
-        Binding<Date>(
-            get: {
-                // Convert the `calendarDate` to `Date`
-                return Calendar.current.date(from: calendarDate) ?? Date()
-            },
-            set: {
-                let timeZone = TimeZone.current
-                var calendar = Calendar(identifier: .gregorian)
-                calendar.timeZone = timeZone
-                
-                // Store the new date value in `calendarDate` as `DateComponents`
-                calendarDate = Calendar.current.dateComponents([.day, .month, .year], from: $0)
-                if let date = calendar.date(from: calendarDate) {
-                    // Format the Date into a string
-                    let dateFormatter = DateFormatter()
-                    dateFormatter.dateFormat = "dd/MM/yyyy"
-                    dateFormatter.timeZone = timeZone
-                    let dateString = dateFormatter.string(from: date)
-                    birthday = dateString
-                    defaults.set(birthday, forKey: "birthday")
-                    calcRhythm(birthday: DateFormat().date(from: birthday ?? "02/07/1979"))
-                    refreshView()
-                } else {
-                    print("Could not convert DateComponents to Date")
+    @State private var physical: Float = groupDefaults?.float(forKey: "physical") ?? 0.0
+    @State private var emotional: Float = groupDefaults?.float(forKey: "emotional") ?? 0.0
+    @State private var mental: Float = groupDefaults?.float(forKey: "mental") ?? 0.0
+    @State private var physicalYesterday: Float = groupDefaults?.float(forKey: "physical_1") ?? 0.0
+    @State private var emotionalYesterday: Float = groupDefaults?.float(forKey: "emotional_1") ?? 0.0
+    @State private var mentalYesterday: Float = groupDefaults?.float(forKey: "mental_1") ?? 0.0
+
+    @State private var vo2MaxValue: Double = groupDefaults?.double(forKey: "vo2MaxValue") ?? 0.0
+    @State private var sdnnValue: String = groupDefaults?.string(forKey: "SDNNValue") ?? "Low"
+    @State private var rmssdValue: String = groupDefaults?.string(forKey: "rMSSDValue") ?? "Low"
+
+    @State private var birthdayString: String = groupDefaults?.string(forKey: "birthday") ?? "02/07/1979"
+    @State private var selectedBirthday: Date = Date()
+    @State private var showBirthdayEditor: Bool = false
+
+    init() {
+        print("Mac App Start")
+        if groupDefaults?.string(forKey: "birthday") == nil {
+            groupDefaults?.set("02/07/1979", forKey: "birthday")
+        }
+
+        let storedBirthday = groupDefaults?.string(forKey: "birthday") ?? "02/07/1979"
+        calcRhythm(birthday: DateFormat().date(from: storedBirthday))
+    }
+
+    var body: some View {
+        ZStack {
+            Image("BackGround")
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+                .ignoresSafeArea()
+
+            ScrollView {
+                VStack(spacing: 14) {
+                    headerCard
+                    rhythmCard
+                    statusCard
+                    adviceCard
                 }
+                .padding(16)
+                .frame(maxWidth: 760)
             }
+        }
+        .onAppear {
+            selectedBirthday = parseBirthday(birthdayString) ?? Date()
+            refreshAll()
+        }
+        .sheet(isPresented: $showBirthdayEditor) {
+            birthdayEditor
+                .frame(width: 300, height: 360)
+        }
+    }
+
+    private var headerCard: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            HStack {
+                Text("BenBio")
+                    .font(.title2.weight(.bold))
+                Spacer()
+                Button {
+                    selectedBirthday = parseBirthday(birthdayString) ?? Date()
+                    showBirthdayEditor = true
+                } label: {
+                    Label("Edit Birthday", systemImage: "calendar")
+                        .font(.subheadline.weight(.semibold))
+                }
+                .buttonStyle(.bordered)
+                .controlSize(.small)
+            }
+
+            Text("Current: \(birthdayString)")
+                .font(.footnote)
+                .foregroundStyle(.secondary)
+        }
+        .padding(16)
+        .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 14, style: .continuous))
+        .overlay(
+            RoundedRectangle(cornerRadius: 14, style: .continuous)
+            .stroke(Color.white.opacity(0.10), lineWidth: 1)
         )
     }
-    
-    init() {
-        print("App Start")
-        birthday = defaults.string(forKey: "birthday")
-        print(birthday as Any)
-        if birthday == nil {
-            birthday = "02/07/1979"
-            defaults.set(birthday, forKey: "birthday")
+
+    private var rhythmCard: some View {
+        VStack(spacing: 10) {
+            rhythmRow(title: "Physical", emoji: "💪", value: physical, previous: physicalYesterday)
+            rhythmRow(title: "Emotional", emoji: "🧡", value: emotional, previous: emotionalYesterday)
+            rhythmRow(title: "Mental", emoji: "🧠", value: mental, previous: mentalYesterday)
         }
-        calcRhythm(birthday: DateFormat().date(from: birthday ?? "02/07/1979"))
-        
-        // Year is at position 7 to 10
-        if let birthday = birthday, birthday.count >= 10 {
-            let startIndex = birthday.index(birthday.startIndex, offsetBy: 6) // Index of 7th character
-            let endIndex = birthday.index(birthday.startIndex, offsetBy: 9) // Index of 10th character
-            let range = startIndex...endIndex
-            let yearSubstring = String(birthday[range]) // Extracts characters 7 to 10
-            if let year = Int(yearSubstring) {
-                components.year = year
-            } else {
-                components.year = 1979
-            }
-        } else {
-            components.year = 1979
+        .padding(16)
+        .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 14, style: .continuous))
+        .overlay(
+            RoundedRectangle(cornerRadius: 14, style: .continuous)
+            .stroke(Color.white.opacity(0.10), lineWidth: 1)
+        )
+    }
+
+    private var statusCard: some View {
+        VStack(spacing: 10) {
+            statRow(label: "Cardiofitness", value: String(format: "%.1f", vo2MaxValue), color: .teal)
+            statRow(label: "Stress (today)", value: sdnnValue, color: stressColor(sdnnValue))
+            statRow(label: "Stress (now)", value: rmssdValue, color: stressColor(rmssdValue))
         }
-        // Month is at position 4 and 5
-        if let birthday = birthday, birthday.count >= 5 {
-            let startIndex = birthday.index(birthday.startIndex, offsetBy: 3) // Index of 4th character
-            let endIndex = birthday.index(birthday.startIndex, offsetBy: 4) // Index of 5th character
-            let range = startIndex...endIndex
-            let monthSubstring = String(birthday[range]) // Extracts characters 4 to 5
-            if let month = Int(monthSubstring) {
-                components.month = month
-            } else {
-                components.month = 07
-            }
-        } else {
-            components.month = 07
-        }
-        // Day is at position 1 and 2
-        if let birthday = birthday, birthday.count >= 2 {
-            let startIndex = birthday.startIndex // Index of 1st character
-            let endIndex = birthday.index(birthday.startIndex, offsetBy: 1) // Index of 2nd character
-            let range = startIndex...endIndex
-            let daySubstring = String(birthday[range]) // Extracts characters 1 to 2
-            if let day = Int(daySubstring) {
-                components.day = day
-            } else {
-                components.day = 02
-            }
-        } else {
-            components.day = 02
-        }
-        // Use the current calendar to create a Date from components
-        if let defaultDate = Calendar.current.date(from: components) {
-            _selectedDate = State(initialValue: defaultDate)
-        } else {
-            // Handle the case where the date couldn't be created,
-            // for example, by using the current date:
-            _selectedDate = State(initialValue: Date())
-        }
-        _calendarDate = State(initialValue: components)
-    } //: init
-    
-    var body: some View {
-        Image("BackGround")
-            .resizable()
-            .aspectRatio(contentMode: .fill)
-            .ignoresSafeArea()
-        VStack {
-            DatePicker("Select your birthday", selection: selectedDateProxy, displayedComponents: .date)
+        .padding(16)
+        .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 14, style: .continuous))
+        .overlay(
+            RoundedRectangle(cornerRadius: 14, style: .continuous)
+            .stroke(Color.white.opacity(0.10), lineWidth: 1)
+        )
+    }
+
+    private var adviceCard: some View {
+        HStack {
+            Text("Advice")
+                .font(.subheadline)
+                .foregroundStyle(.secondary)
             Spacer()
-            
-            Group {
-                if physical < -0.05 {
-                    if physical > physical_1 {
-                        Text("💪 \(String(format: "%.0f", physical * 100))%  ⬆️").font(.system(size: 30)).foregroundStyle(.orange)
-                    } else {
-                        Text("💪 \(String(format: "%.0f", physical * 100))%  ⬇️").font(.system(size: 30)).foregroundStyle(.orange)
+            Text(adviceEmoji())
+                .font(.title2)
+        }
+        .padding(16)
+        .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 14, style: .continuous))
+        .overlay(
+            RoundedRectangle(cornerRadius: 14, style: .continuous)
+            .stroke(Color.white.opacity(0.10), lineWidth: 1)
+        )
+    }
+
+    private var birthdayEditor: some View {
+        NavigationStack {
+            VStack(spacing: 16) {
+                DatePicker("Birthday", selection: $selectedBirthday, displayedComponents: .date)
+                    .datePickerStyle(.graphical)
+                    .labelsHidden()
+
+                HStack(spacing: 10) {
+                    Button("Cancel") {
+                        showBirthdayEditor = false
                     }
+                    .buttonStyle(.bordered)
+
+                    Button("Apply Birthday") {
+                        let newBirthday = DateFormat().string(from: selectedBirthday)
+                        birthdayString = newBirthday
+                        groupDefaults?.set(newBirthday, forKey: "birthday")
+                        calcRhythm(birthday: DateFormat().date(from: newBirthday))
+                        refreshAll()
+                        showBirthdayEditor = false
+                    }
+                    .buttonStyle(.borderedProminent)
                 }
-                if physical >= -0.05 && physical <= 0.05 {
-                    if physical < 0 {
-                        if physical > physical_1 {
-                            Text("💪 \(String(format: "%.0f", physical * 100))%  ⬆️").font(.system(size: 30)).foregroundStyle(.red)
-                        } else {
-                            Text("💪 \(String(format: "%.0f", physical * 100))%  ⬇️").font(.system(size: 30)).foregroundStyle(.red)
-                        }
-                    }
-                    else {
-                        if physical > physical_1 {
-                            Text("💪 +\(String(format: "%.0f", physical * 100))%  ⬆️").font(.system(size: 30)).foregroundStyle(.red)
-                        } else {
-                            Text("💪 +\(String(format: "%.0f", physical * 100))%  ⬇️").font(.system(size: 30)).foregroundStyle(.red)
-                        }
-                    }
-                }
-                if physical > 0.05 {
-                    if physical > physical_1 {
-                        Text("💪 +\(String(format: "%.0f", physical * 100))%  ⬆️").font(.system(size: 30)).foregroundStyle(.green)
-                    } else {
-                        Text("💪 +\(String(format: "%.0f", physical * 100))%  ⬇️").font(.system(size: 30)).foregroundStyle(.green)
-                    }
-                }
-            } //: Group
-            Group {
-                if emotional < -0.05 {
-                    if emotional > emotional_1 {
-                        Text("🧡 \(String(format: "%.0f", emotional * 100))%  ⬆️").font(.system(size: 30)).foregroundStyle(.orange)
-                    } else {
-                        Text("🧡 \(String(format: "%.0f", emotional * 100))%  ⬇️").font(.system(size: 30)).foregroundStyle(.orange)
-                    }
-                }
-                if emotional >= -0.05 && emotional <= 0.05 {
-                    if emotional < 0 {
-                        if emotional > emotional_1 {
-                            Text("🧡 \(String(format: "%.0f", emotional * 100))%  ⬆️").font(.system(size: 30)).foregroundStyle(.red)
-                        } else {
-                            Text("🧡 \(String(format: "%.0f", emotional * 100))%  ⬇️").font(.system(size: 30)).foregroundStyle(.red)
-                        }
-                    }
-                    else {
-                        if emotional > emotional_1 {
-                            Text("🧡 +\(String(format: "%.0f", emotional * 100))%  ⬆️").font(.system(size: 30)).foregroundStyle(.red)
-                        } else {
-                            Text("🧡 +\(String(format: "%.0f", emotional * 100))%  ⬇️").font(.system(size: 30)).foregroundStyle(.red)
-                        }
-                    }
-                }
-                if emotional > 0.05 {
-                    if emotional > emotional_1 {
-                        Text("🧡 +\(String(format: "%.0f", emotional * 100))%  ⬆️").font(.system(size: 30)).foregroundStyle(.green)
-                    } else {
-                        Text("🧡 +\(String(format: "%.0f", emotional * 100))%  ⬇️").font(.system(size: 30)).foregroundStyle(.green)
-                    }
-                }
-            } //: Group
-            Group {
-                if mental < -0.05 {
-                    if mental > mental_1 {
-                        Text("🧠 \(String(format: "%.0f", mental * 100))%  ⬆️").font(.system(size: 30)).foregroundStyle(.orange)
-                    } else {
-                        Text("🧠 \(String(format: "%.0f", mental * 100))%  ⬇️").font(.system(size: 30)).foregroundStyle(.orange)
-                    }
-                }
-                if mental >= -0.05 && mental <= 0.05 {
-                    if mental < 0 {
-                        if mental > mental_1 {
-                            Text("🧠 \(String(format: "%.0f", mental * 100))%  ⬆️").font(.system(size: 30)).foregroundStyle(.red)
-                        } else {
-                            Text("🧠 \(String(format: "%.0f", mental * 100))%  ⬇️").font(.system(size: 30)).foregroundStyle(.red)
-                        }
-                    }
-                    else {
-                        if mental > mental_1 {
-                            Text("🧠 +\(String(format: "%.0f", mental * 100))%  ⬆️").font(.system(size: 30)).foregroundStyle(.red)
-                        } else {
-                            Text("🧠 +\(String(format: "%.0f", mental * 100))%  ⬇️").font(.system(size: 30)).foregroundStyle(.red)
-                        }
-                    }
-                }
-                if mental > 0.05 {
-                    if mental > mental_1 {
-                        Text("🧠 +\(String(format: "%.0f", mental * 100))%  ⬆️").font(.system(size: 30)).foregroundStyle(.green)
-                    } else {
-                        Text("🧠 +\(String(format: "%.0f", mental * 100))%  ⬇️").font(.system(size: 30)).foregroundStyle(.green)
-                    }
-                }
-            } //: Group
-            Group {
-                VStack(spacing: 0) {
-                    Text("Cardiofitness: \(String(vo2MaxValue))").font(.system(size: 14)).foregroundStyle(.teal)
-                    Text("Stresslevel (today): \(SDNNValue)").font(.system(size: 14)).foregroundStyle(.teal)
-                    Text("Stresslevel (now): \(rMSSDValue)").font(.system(size: 14)).foregroundStyle(.teal)
-                }
-                if physical >= -0.05 && physical <= 0.05 || emotional >= -0.05 && emotional <= 0.05 || mental >= -0.05 && mental <= 0.05 {
-                    Text("Advise ⚠️").font(.system(size: 24)).foregroundStyle(.teal)
-                } else {
-                    if physical + emotional + mental > 1 {
-                        Text("Advise 🥳").font(.system(size: 24)).foregroundStyle(.teal)
-                    }
-                    if physical + emotional + mental >= -1 && physical + emotional + mental <= 1 {
-                        Text("Advise 😃").font(.system(size: 24)).foregroundStyle(.teal)
-                    }
-                    if physical + emotional + mental < -1 {
-                        Text("Advise 😴").font(.system(size: 24)).foregroundStyle(.teal)
-                    }
-                }
-            } //: Group
-            .padding()
-        } //:VStack
-        .onAppear {
+                .frame(maxWidth: .infinity, alignment: .center)
+            }
+            .padding(18)
+            .navigationTitle("Birthday")
+        }
+    }
+
+    @ViewBuilder
+    private func rhythmRow(title: String, emoji: String, value: Float, previous: Float) -> some View {
+        let percent = abs(Int((value * 100).rounded()))
+        let arrow = value >= previous ? "arrow.up" : "arrow.down"
+
+        HStack(spacing: 10) {
+            Text(emoji)
+                .font(.title3)
+
+            Text(title)
+                .font(.subheadline)
+                .foregroundStyle(.secondary)
+
+            Spacer()
+
+            HStack(spacing: 5) {
+                Text("\(percent)%")
+                    .font(.system(.subheadline, design: .rounded).weight(.bold))
+                Image(systemName: arrow)
+                    .font(.footnote.weight(.bold))
+            }
+            .foregroundStyle(phaseColor(value))
+            .monospacedDigit()
+            .padding(.horizontal, 10)
+            .padding(.vertical, 6)
+            .background(phaseColor(value).opacity(0.15), in: Capsule())
+        }
+    }
+
+    @ViewBuilder
+    private func statRow(label: String, value: String, color: Color) -> some View {
+        HStack {
+            Text(label)
+                .font(.subheadline)
+                .foregroundStyle(.secondary)
+            Spacer()
+            Text(value)
+                .font(.subheadline.weight(.semibold))
+                .foregroundStyle(color)
+                .padding(.horizontal, 10)
+                .padding(.vertical, 4)
+                .background(color.opacity(0.15), in: Capsule())
+        }
+    }
+
+    private func phaseColor(_ value: Float) -> Color {
+        if value < -0.05 { return .orange }
+        if value <= 0.05 { return .red }
+        return .green
+    }
+
+    private func stressColor(_ level: String) -> Color {
+        switch level {
+        case "High": return .red
+        case "Medium": return .orange
+        default: return .green
+        }
+    }
+
+    private func adviceEmoji() -> String {
+        if physical >= -0.05 && physical <= 0.05 || emotional >= -0.05 && emotional <= 0.05 || mental >= -0.05 && mental <= 0.05 {
+            return "⚠️"
+        }
+
+        let sum = physical + emotional + mental
+        if sum > 1 { return "🥳" }
+        if sum < -1 { return "😴" }
+        return "😃"
+    }
+
+    private func parseBirthday(_ value: String) -> Date? {
+        DateFormat().date(from: value)
+    }
+
+    private func refreshAll() {
+        birthdayString = groupDefaults?.string(forKey: "birthday") ?? "02/07/1979"
+        calcRhythm(birthday: DateFormat().date(from: birthdayString))
+        // Fetch latest HealthKit metrics so the Mac app mirrors iOS/watch.
+        Task {
+            print("[BenBio Mac] requesting HealthKit metrics...")
+            let metrics = await fetchHealthMetricsAndStore()
+            print("[BenBio Mac] fetched metrics: sdnn=\(metrics.sdnnMS ?? -1), vo2=\(metrics.vo2Max ?? -1)")
             refreshView()
         }
-    } //: View
-    
-    func refreshView() {
-        physical = defaults.float(forKey: "physical")
-        emotional = defaults.float(forKey: "emotional")
-        mental = defaults.float(forKey: "mental")
-        physical_1 = defaults.float(forKey: "physical_1")
-        emotional_1 = defaults.float(forKey: "emotional_1")
-        mental_1 = defaults.float(forKey: "mental_1")
-        vo2MaxValue = defaults.double(forKey: "vo2MaxValue")
-        SDNNValue = defaults.string(forKey: "SDNNValue") ?? "Low"
-        rMSSDValue = defaults.string(forKey: "rMSSDValue") ?? "Low"
-    } //: refreshView
-} //: ContentView
+    }
+
+    private func refreshView() {
+        physical = groupDefaults?.float(forKey: "physical") ?? 0.0
+        emotional = groupDefaults?.float(forKey: "emotional") ?? 0.0
+        mental = groupDefaults?.float(forKey: "mental") ?? 0.0
+        physicalYesterday = groupDefaults?.float(forKey: "physical_1") ?? 0.0
+        emotionalYesterday = groupDefaults?.float(forKey: "emotional_1") ?? 0.0
+        mentalYesterday = groupDefaults?.float(forKey: "mental_1") ?? 0.0
+        vo2MaxValue = groupDefaults?.double(forKey: "vo2MaxValue") ?? 0.0
+        sdnnValue = groupDefaults?.string(forKey: "SDNNValue") ?? "Low"
+        rmssdValue = groupDefaults?.string(forKey: "rMSSDValue") ?? "Low"
+    }
+}
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
