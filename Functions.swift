@@ -162,7 +162,7 @@ public func getHRVdata() {
                 if stressLevel > 50 {
                     groupDefaults?.set("Low", forKey: "SDNNValue")
                 } else if stressLevel > 25 {
-                    groupDefaults?.set("Med.", forKey: "SDNNValue")
+                    groupDefaults?.set("Medium", forKey: "SDNNValue")
                 } else {
                     groupDefaults?.set("High", forKey: "SDNNValue")
                 }
@@ -171,7 +171,7 @@ public func getHRVdata() {
                 if stressLevel > 50 {
                     groupDefaults?.set("Low", forKey: "rMSSDValue")
                 } else if stressLevel > 25 {
-                    groupDefaults?.set("Med.", forKey: "rMSSDValue")
+                    groupDefaults?.set("Medium", forKey: "rMSSDValue")
                 } else {
                     groupDefaults?.set("High", forKey: "rMSSDValue")
                 }
@@ -343,7 +343,7 @@ public struct HealthMetrics {
         if stressLevel > 50 {
             groupDefaults?.set("Low", forKey: "SDNNValue")
         } else if stressLevel > 25 {
-            groupDefaults?.set("Med.", forKey: "SDNNValue")
+            groupDefaults?.set("Medium", forKey: "SDNNValue")
         } else {
             groupDefaults?.set("High", forKey: "SDNNValue")
         }
@@ -352,7 +352,7 @@ public struct HealthMetrics {
         if stressLevel > 50 {
             groupDefaults?.set("Low", forKey: "rMSSDValue")
         } else if stressLevel > 25 {
-            groupDefaults?.set("Med.", forKey: "rMSSDValue")
+            groupDefaults?.set("Medium", forKey: "rMSSDValue")
         } else {
             groupDefaults?.set("High", forKey: "rMSSDValue")
         }

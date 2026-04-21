@@ -157,7 +157,7 @@ struct ContentView: View {
         switch level {
         case "High":
             return .red
-        case "Med.":
+        case "Medium":
             return .orange
         default:
             return .green

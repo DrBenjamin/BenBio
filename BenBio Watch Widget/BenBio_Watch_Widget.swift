@@ -251,7 +251,7 @@ struct Provider: TimelineProvider {
         let stress: Double
         if stressLevel == "High" {
             stress = 1.0
-        } else if stressLevel == "Med." {
+        } else if stressLevel == "Medium" {
             stress = 0.5
         } else {
             stress = 0.3
@@ -326,7 +326,7 @@ struct Provider: TimelineProvider {
         switch stressLevel {
         case "High":
             return "Recover"
-        case "Med.", "Medium":
+        case "Medium":
             return "Balance"
         default:
             return "Go for it"
